@@ -1,4 +1,3 @@
-import 'package:app_compras/constants/routes.dart';
 import 'package:app_compras/constants/theme.dart';
 import 'package:app_compras/views/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +17,7 @@ class _WelcomePageState extends State<WelcomePage> {
       child: Container(
         padding:EdgeInsets.only(top:100, bottom:40),
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: AppTheme.colorBlack,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -26,7 +25,7 @@ class _WelcomePageState extends State<WelcomePage> {
             Text("Coffe Shop",
               style: GoogleFonts.pacifico(
                 fontSize: 50, 
-                color: Colors.white,
+                color: AppTheme.colorWhite,
               ),
             ),
             Column(
@@ -41,7 +40,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 SizedBox(height: 80),
                 Material(
-                  color: Color(0xFFE57734),
+                  color: AppTheme.colorOrange,
                   borderRadius: BorderRadius.circular(10),
                   child: InkWell(
                     onTap: (){
@@ -55,7 +54,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
                       child: Text("Get Start",
                         style : TextStyle(
-                          color: Colors.white,
+                          color: AppTheme.colorWhite,
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1,

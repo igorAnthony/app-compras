@@ -1,4 +1,6 @@
 import 'package:app_compras/constants/theme.dart';
+import 'package:app_compras/widgets/home_bottom_bar.dart';
+import 'package:app_compras/widgets/items_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -14,7 +16,7 @@ class _HomeViewState extends State<HomeView>
 
   @override
   void initState() {
-    _tabController = TabController(length: 4, vsync: this, initialIndex: 0);
+    _tabController = TabController(length: 2, vsync: this, initialIndex: 0);
     _tabController.addListener(_handleTabSelection);
     super.initState();
   }
@@ -48,7 +50,7 @@ class _HomeViewState extends State<HomeView>
                         onTap: (){},
                         child: Icon(
                           Icons.sort_rounded, 
-                          color: Colors.white,
+                          color: AppTheme.colorWhite,
                           size: 35,
                         ),
                       ),
@@ -56,7 +58,7 @@ class _HomeViewState extends State<HomeView>
                         onTap: (){},
                         child: Icon(
                           Icons.shopping_cart, 
-                          color: Colors.white,
+                          color: AppTheme.colorWhite,
                           size: 35,
                         ),
                       )
@@ -70,7 +72,7 @@ class _HomeViewState extends State<HomeView>
                     width: MediaQuery.of(context).size.width,
                     child: Text("It's a Great Day for Coffee", 
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppTheme.colorWhite,
                         fontSize:30,
                         fontWeight: FontWeight.w500,
                       ),
@@ -102,47 +104,36 @@ class _HomeViewState extends State<HomeView>
                   ),
                 ),
                 TabBar(
-                  labelStyle: TextStyle(fontSize: 20.0),
+                  labelStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
+                  labelColor: AppTheme.colorOrange,
                   labelPadding: EdgeInsets.symmetric(horizontal: 20),
-                  isScrollable: true,
+                  isScrollable: false,
                   unselectedLabelColor: Colors.white.withOpacity(0.5),
                   indicator: UnderlineTabIndicator(
                     borderSide: BorderSide(
                       width: 3,
-                      color: Color(0xFFE57734),
+                      color: AppTheme.colorOrange,
                     ),
-                    insets: EdgeInsets.symmetric(horizontal: 16),
                   ),
                   indicatorColor: Colors.transparent,
                   controller: _tabController,
                   tabs: [
-                    Tab(text: "Hot Coffee",),
-                    Tab(text: "Hot Coffee",),
-                    Tab(text: "Hot Coffee",),
+                    Tab(text: "Cappuccino",),
                     Tab(text: "Hot Coffee",),
                   ],
                 ),
                 SizedBox(height: 10,),
                 Center(
                   child: [
-                    Container(
-                      color:Colors.red,
-                    ),
-                    Container(
-                      color:Colors.red,
-                    ),
-                    Container(
-                      color:Colors.red,
-                    ),
-                    Container(
-                      color:Colors.red,
-                    ),
+                    ItemsWidget(),
+                    ItemsWidget(),                  
                   ][_tabController.index],
                 )
               ],
             ),
           )
       ),
+      bottomNavigationBar: HomeBottomBar(),
     );
   }
 }
