@@ -1,1 +1,0 @@
-const homeRoute = '/home/';
