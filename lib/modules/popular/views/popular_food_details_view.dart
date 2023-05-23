@@ -1,6 +1,5 @@
 import 'package:app_compras/global/constant/colors.dart';
 import 'package:app_compras/global/constant/route.dart';
-import 'package:app_compras/models/products_model.dart';
 import 'package:app_compras/global/constant/dimensions.dart';
 import 'package:app_compras/global/widgets/app_icon.dart';
 import 'package:app_compras/global/widgets/expandable_text.dart';

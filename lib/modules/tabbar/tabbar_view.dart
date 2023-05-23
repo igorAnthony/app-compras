@@ -1,4 +1,6 @@
+import 'package:app_compras/global/constant/api_constant.dart';
 import 'package:app_compras/global/constant/colors.dart';
+import 'package:app_compras/modules/admin/views/admin_view.dart';
 import 'package:app_compras/modules/cart/views/cart_history.dart';
 import 'package:app_compras/modules/food/views/food_view.dart';
 import 'package:app_compras/modules/orders/views/orders_view.dart';
@@ -17,16 +19,47 @@ class _TabbarViewState extends State<TabbarView> {
     FoodView(),
     OrdersView(),
     CartHistory(),
-    ProfileView()
+    ProfileView(),
+    AdminPanelView(),
   ];
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
     });
   }
+  
+
 
   @override
   Widget build(BuildContext context) {
+    List<BottomNavigationBarItem> bottomNavBarItems = [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: 'Home',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.description),
+        label: 'Orders',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.shopping_cart),
+        label: 'Cart',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.person),
+        label: 'Profile',
+      ),
+    ];
+    if(box.read('admin') == 1){
+        bottomNavBarItems.add(
+          BottomNavigationBarItem(
+            icon: Icon(Icons.admin_panel_settings),
+            label: 'Admin',
+          ),
+      );
+    }
+    
+
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -36,24 +69,7 @@ class _TabbarViewState extends State<TabbarView> {
         selectedItemColor: AppColors.mainColor,
         // showSelectedLabels: false,
         // showUnselectedLabels: false,
-        items: const <BottomNavigationBarItem> [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.description),
-            label: 'Orders',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
+        items: bottomNavBarItems,
       ),
     );
   }

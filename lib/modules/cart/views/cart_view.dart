@@ -3,7 +3,6 @@ import 'package:app_compras/global/constant/dimensions.dart';
 import 'package:app_compras/global/constant/route.dart';
 import 'package:app_compras/global/widgets/text.dart';
 import 'package:app_compras/models/cart_model.dart';
-import 'package:app_compras/modules/tabbar/tabbar_view.dart';
 import 'package:app_compras/modules/cart/controller/cart_controller.dart';
 import 'package:app_compras/modules/cart/views/cart_empty.dart';
 import 'package:app_compras/modules/popular/controllers/popular_product_controller.dart';

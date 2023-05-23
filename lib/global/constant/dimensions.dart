@@ -84,4 +84,9 @@ class Dimensions {
   //profile
    static double profileImgSize = screenWidth / 3.25;
    static double profileIconSize = screenHeight / 17.32;
+
+   //admin
+   static double productImgSize = screenHeight / 8.66;
+   static double productContainer = screenHeight / 11.54;
+   static double shadowBlurRadius = screenWidth / 82.2;
 }

@@ -12,6 +12,7 @@ class RegisterView extends GetView<RegisterController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: 
         Form(
           key: controller.formKey2,

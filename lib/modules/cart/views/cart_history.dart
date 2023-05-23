@@ -1,7 +1,6 @@
 import 'package:app_compras/global/constant/colors.dart';
 import 'package:app_compras/global/constant/dimensions.dart';
 import 'package:app_compras/global/constant/route.dart';
-import 'package:app_compras/global/widgets/app_icon.dart';
 import 'package:app_compras/global/widgets/text.dart';
 import 'package:app_compras/modules/cart/controller/cart_controller.dart';
 import 'package:flutter/material.dart';

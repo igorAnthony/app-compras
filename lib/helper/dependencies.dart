@@ -1,3 +1,4 @@
+import 'package:app_compras/modules/admin/binding/admin_binding.dart';
 import 'package:app_compras/modules/cart/bindings/cart_binding.dart';
 import 'package:app_compras/modules/login/bindings/login_binding.dart';
 import 'package:app_compras/modules/tabbar/controller/tabbar_controller.dart';
@@ -17,6 +18,7 @@ class InitBinding implements Bindings {
     RecommendedBinding().dependencies();
     OrdersBinding().dependencies();
     CartBinding().dependencies();
+    AdminBinding().dependencies();
     Get.put<TabbarController>(TabbarController());
   }
 }

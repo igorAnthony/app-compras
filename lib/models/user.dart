@@ -1,3 +1,5 @@
+import 'package:app_compras/global/constant/api_constant.dart';
+
 class User {
   int? id;
   String? name;
@@ -7,6 +9,9 @@ class User {
   User({this.id, this.name, this.email, this.token});
 
   factory User.fromJson(Map<String, dynamic> json) {
+    box.write('user', json['user']['id']);
+    box.write('admin', json['user']['isAdmin']);
+    box.write('token', json['token']);
     return User(
       id: json['user']['id'],
       name: json['user']['name'],

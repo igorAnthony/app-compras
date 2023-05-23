@@ -3,12 +3,11 @@ import 'package:app_compras/global/constant/dimensions.dart';
 import 'package:app_compras/global/widgets/text.dart';
 import 'package:flutter/material.dart';
 
-InputDecoration kInputDecoration(String label, IconData icon) {
+InputDecoration kInputDecoration(String label, IconData icon, {Color? iconColor}) {
   return InputDecoration(
-    
     labelText: label,
-    prefixIcon: Icon(icon, color: AppColors.mainColor),
-    contentPadding: const EdgeInsets.symmetric(horizontal:10, vertical: 20),
+    prefixIcon: Icon(icon, color: iconColor ?? AppColors.mainColor),
+    contentPadding: EdgeInsets.symmetric(horizontal:Dimensions.height10, vertical: Dimensions.width20),
     border: const OutlineInputBorder(
         borderSide: BorderSide.none
     ),
@@ -16,10 +15,24 @@ InputDecoration kInputDecoration(String label, IconData icon) {
   );
 }
 
-Material kMaterialDecoration(Widget textFormField) {
+InputDecoration kInputDecorationDescription(String label, IconData icon, {Color? iconColor}) {
+  return InputDecoration(
+    labelText: label,
+    prefixIcon: Icon(icon, color: iconColor ?? AppColors.mainColor),
+    contentPadding: EdgeInsets.symmetric(horizontal:Dimensions.height10, vertical: Dimensions.width20),
+    border: const OutlineInputBorder(
+        borderSide: BorderSide.none
+    ),
+    floatingLabelBehavior: FloatingLabelBehavior.never,
+  );
+}
+Material kMaterialDecoration(Widget textFormField, {double? borderRadius}) {
+  if(borderRadius == null){
+    borderRadius = Dimensions.border30;
+  }
   return Material(
     elevation: Dimensions.height5,
-    borderRadius: BorderRadius.all(Radius.circular(Dimensions.border30)),
+    borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
     shadowColor: Colors.white,
     child: textFormField,
   );

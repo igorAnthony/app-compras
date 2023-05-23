@@ -3,7 +3,6 @@ import 'package:app_compras/modules/login/repository/login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app_compras/models/user.dart';
-import 'package:app_compras/global/constant/api_constant.dart';
 
 class LoginController extends GetxController {
   final LoginRepository loginRepo = Get.find<LoginRepository>();
@@ -21,15 +20,12 @@ class LoginController extends GetxController {
       isLoading.value = true;
       final auth = await loginRepo.loginUser(emailController.text, passwordController.text);
       if(auth.error == null){
-        User user = auth.data as User;
         Get.offAndToNamed(Routes.homeRoute);
-        box.write('token', user.token);
-        box.write('user_id', user.id);
         Get.showSnackbar(
           GetSnackBar(
             message: "The user has successfully logged in.",
             icon: const Icon(Icons.refresh),
-            duration: const Duration(seconds: 2),
+            duration: const Duration(seconds: 1),
           ),
         );
       }  

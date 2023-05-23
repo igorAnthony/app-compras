@@ -11,6 +11,7 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: Form(
             key: controller.formKey,
             child: SingleChildScrollView(

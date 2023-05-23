@@ -19,7 +19,6 @@ class PopularProvider{
           apiResponse.data = jsonDecode(response.body)['products']
               .map((p) => Products.fromJson(p))
               .toList();
-          print("teste"+apiResponse.data.toString());
           apiResponse.data as List<dynamic>;
           break;
         case 401:

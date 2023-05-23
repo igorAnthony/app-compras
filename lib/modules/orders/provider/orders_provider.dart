@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:app_compras/models/api_response.dart';
-import 'package:app_compras/models/orders_items_model.dart';
 import 'package:app_compras/models/orders_model.dart';
 import 'package:app_compras/models/payment_voucher_model.dart';
 import 'package:app_compras/global/constant/api_constant.dart';
@@ -11,7 +10,8 @@ class OrdersProvider{
     ApiResponse apiResponse = ApiResponse();
 
     try {
-      final response = await http.get(Uri.parse(ApiConstants.ordersURL+'/${box.read('user_id')}'),
+      final userId = box.read('user');
+      final response = await http.get(Uri.parse(ApiConstants.ordersURL+'/${userId}'),
           headers: {
             'Accept': 'application/json',
             'Authorization': 'Bearer ${box.read('token')}'

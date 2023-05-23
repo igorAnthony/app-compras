@@ -10,7 +10,8 @@ class RecommendedProvider{
 
     try {
       //print('/${box.read('user_id')}');
-      final response = await http.get(Uri.parse(ApiConstants.recommendedURL + '/${box.read('user_id')}'),
+      final userId = box.read('user');
+      final response = await http.get(Uri.parse(ApiConstants.recommendedURL + '/${userId}'),
           headers: {
             'Accept': 'application/json',
             'Authorization': 'Bearer ${box.read('token')}'

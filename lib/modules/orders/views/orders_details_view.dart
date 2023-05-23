@@ -1,8 +1,6 @@
-import 'package:app_compras/models/orders_items_model.dart';
 import 'package:app_compras/models/payment_voucher_model.dart';
 import 'package:app_compras/global/constant/colors.dart';
 import 'package:app_compras/global/constant/dimensions.dart';
-import 'package:app_compras/global/widgets/app_icon.dart';
 import 'package:app_compras/global/widgets/text.dart';
 import 'package:app_compras/modules/orders/controller/orders_controller.dart';
 import 'package:flutter/material.dart';
