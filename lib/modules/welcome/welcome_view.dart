@@ -18,13 +18,14 @@ class _WelcomeViewState extends State<WelcomeView> with TickerProviderStateMixin
 
   @override
   void initState() {
+    super.initState();
     controller=new AnimationController(vsync: this, duration: Duration(seconds:2))..forward();
     animation = new CurvedAnimation(parent: controller, curve: Curves.linear);
     Timer(
       const Duration(seconds:3),
       ()=>Get.offNamed(Routes.loginRoute),
     );
-    super.initState();
+    
   }
 
   @override

@@ -26,7 +26,7 @@ InputDecoration kInputDecorationDescription(String label, IconData icon, {Color?
     floatingLabelBehavior: FloatingLabelBehavior.never,
   );
 }
-Material kMaterialDecoration(Widget textFormField, {double? borderRadius}) {
+Material kMaterialDecoration(Widget textFormField, {double? borderRadius, double? sizeMax}) {
   if(borderRadius == null){
     borderRadius = Dimensions.border30;
   }
@@ -34,15 +34,18 @@ Material kMaterialDecoration(Widget textFormField, {double? borderRadius}) {
     elevation: Dimensions.height5,
     borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
     shadowColor: Colors.white,
-    child: textFormField,
+    child: Container(
+      width: sizeMax ?? double.maxFinite,
+      child: textFormField,
+    ),
   );
 }
 
-TextButton kTextButton(String label, Function onPressed) {
+TextButton kTextButton(String label, Function onPressed, {Color? backgroundColor, double? fontSize}) {
   return TextButton(
     onPressed: () => onPressed(),
     style: ButtonStyle(
-      backgroundColor: MaterialStateColor.resolveWith((states) => (AppColors.mainColor)),
+      backgroundColor: MaterialStateColor.resolveWith((states) => (backgroundColor ?? AppColors.mainColor)),
       padding: MaterialStateProperty.resolveWith((states) => EdgeInsets.symmetric(vertical: 15, horizontal: 50)),
       shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
         RoundedRectangleBorder(
@@ -50,7 +53,7 @@ TextButton kTextButton(String label, Function onPressed) {
         )
       ),
     ),
-    child: bigText(label, color: Colors.white, size: Dimensions.font26)
+    child: bigText(label, color: Colors.white, size: fontSize ?? Dimensions.font26)
   );
 }
 

@@ -1,3 +1,5 @@
+import 'package:app_compras/modules/admin/binding/admin_binding.dart';
+import 'package:app_compras/modules/admin/views/admin_add_product.dart';
 import 'package:app_compras/modules/tabbar/tabbar_view.dart';
 import 'package:app_compras/modules/cart/views/cart_view.dart';
 import 'package:app_compras/modules/food/views/food_body_view.dart';
@@ -29,10 +31,21 @@ class Routes{
   static const loggedRoute = '/logged';
   static const popularFoodDetailsRoute = '/popular';
   static const recommendedFoodDetailsRoute = '/recommended';
+  static const adminRoute = '/admin';
   static String getWelcomeView()=>'$welcomeRoute';
   static String getPopularFood(int pageId) => '$popularFoodDetailsRoute?pageId=$pageId';
   static String getRecommendedFood(int pageId) => '$recommendedFoodDetailsRoute?pageId=$pageId';
   static String getCart(String page) => '$cartRoute?page=$page';
+  static String getAdminView()=>'$adminRoute';
+  static String getAdminProductDetailsView(int? productId, String pageName){
+    print("enrtei");
+    if(productId != null){
+      return '$adminRoute?productId=$productId&pageName=$pageName';
+    }else{
+      return '$adminRoute?pageName=$pageName';
+    }
+    
+  }
   static List<GetPage> getPages = [
   
   GetPage(
@@ -42,7 +55,8 @@ class Routes{
   GetPage(
     name: loginRoute,
     page: () => LoginView(),
-    binding: LoginBinding()
+    binding: LoginBinding(),
+    transition: Transition.rightToLeft
   ),
   GetPage(
     name: registerRoute,
@@ -98,6 +112,21 @@ class Routes{
   GetPage(
     name: profileRoute,
     page: () => ProfileView(),
+  ),
+  GetPage(
+    name: adminRoute,
+    page: () {
+      var productId = Get.parameters['productId'];
+      var pageName = Get.parameters['pageName'] ?? "";
+
+      if(productId == null){
+        return AdminProductDetailsView(pageName: pageName);
+      }else{
+        return AdminProductDetailsView(pageName: pageName, productId: int.parse(productId));
+      } 
+    },
+    binding: AdminBinding(),
+    transition: Transition.fadeIn
   ),
 ];
 }

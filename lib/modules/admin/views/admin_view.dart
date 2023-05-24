@@ -1,10 +1,10 @@
 import 'package:app_compras/global/constant/colors.dart';
 import 'package:app_compras/global/constant/dimensions.dart';
+import 'package:app_compras/global/constant/route.dart';
 import 'package:app_compras/global/widgets/app_icon.dart';
 import 'package:app_compras/global/widgets/text.dart';
 import 'package:app_compras/models/products_model.dart';
 import 'package:app_compras/modules/admin/controller/admin_controller.dart';
-import 'package:app_compras/modules/admin/views/admin_add_product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +36,11 @@ class _AdminPanelViewState extends State<AdminPanelView> {
                       Icon(Icons.admin_panel_settings, color: AppColors.iconColor1),
                     ],
                   ),
-                  appIcon(Icons.add, backgroundColor: AppColors.iconColor1, iconSize: Dimensions.iconSize24, iconColor: Colors.white),
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(Routes.getAdminProductDetailsView(null, "Item Registration"));
+                    },
+                    child: appIcon(Icons.add, backgroundColor: AppColors.iconColor1, iconSize: Dimensions.iconSize24, iconColor: Colors.white)),
                 ],
               ),
             ),
@@ -64,7 +68,7 @@ class _AdminPanelViewState extends State<AdminPanelView> {
                               children: [
                                 GestureDetector(
                                   onTap: (){
-                                    Get.to(AdminProductDetailsView(pageId: 1));
+                                    Get.toNamed(Routes.getAdminProductDetailsView(index, "Update Item"));
                                   },
                                   child: Container(
                                     height: Dimensions.productImgSize,

@@ -59,5 +59,104 @@ class AdminProvider extends GetxService{
     }
     return apiResponse;
   }
+  Future<ApiResponse> createProduct(Products product) async{
+    ApiResponse apiResponse = ApiResponse();
+
+    try{
+      final response = await http.post(Uri.parse(ApiConstants.productsURL),
+      headers: {
+        'Accept' : 'application/json',
+        'Authorization' : 'Bearer ${box.read('token')}'
+      },
+      body: {
+        'name' : product.name,
+        'description' : product.description,
+        'price' : product.price
+      });
+
+      switch(response.statusCode){
+        case 200:
+          apiResponse.data = jsonDecode(response.body);
+          break;
+        case 403:
+          apiResponse.error = jsonDecode(response.body)['message'];
+          break;
+        case 401:
+          apiResponse.error = ApiConstants.unauthorized;
+          break;
+        default:
+          apiResponse.error = ApiConstants.somethingWentWrong;
+          break;
+      }
+    } catch (e){
+      print(e);
+      apiResponse.error = ApiConstants.serverError;
+    }
+    return apiResponse;
+  }
+  Future<ApiResponse> editProduct(Products product) async{
+    ApiResponse apiResponse = ApiResponse();
+
+    try{
+      final response = await http.put(Uri.parse(ApiConstants.productsURL + '/${product.id}'),
+      headers: {
+        'Accept' : 'application/json',
+        'Authorization' : 'Bearer ${box.read('token')}'
+      }, 
+      body : {
+        'name' : product.name,
+        'description' : product.description,
+        'price' : product.price
+      });
+
+      switch(response.statusCode){
+        case 200:
+          apiResponse.data = jsonDecode(response.body)['message'];
+          break;
+        case 403:
+          apiResponse.error = jsonDecode(response.body)['message'];
+          break;
+        case 401:
+          apiResponse.error = ApiConstants.unauthorized;
+          break;
+        default:
+          apiResponse.error = ApiConstants.somethingWentWrong;
+          break;
+      }
+    } catch (e){
+      apiResponse.error = ApiConstants.serverError;
+    }
+    return apiResponse;
+  }
+
+  Future<ApiResponse> deleteProduct(int postId) async{
+    ApiResponse apiResponse = ApiResponse();
+
+    try{
+      final response = await http.delete(Uri.parse(ApiConstants.productsURL + '/$postId'),
+      headers: {
+        'Accept' : 'application/json',
+        'Authorization' : 'Bearer ${box.read('token')}'
+      });
+
+      switch(response.statusCode){
+        case 200:
+          apiResponse.data = jsonDecode(response.body)['message'];
+          break;
+        case 403:
+          apiResponse.error = jsonDecode(response.body)['message'];
+          break;
+        case 401:
+          apiResponse.error = ApiConstants.unauthorized;
+          break;
+        default:
+          apiResponse.error = ApiConstants.somethingWentWrong;
+          break;
+      }
+    } catch (e){
+      apiResponse.error = ApiConstants.serverError;
+    }
+    return apiResponse;
+  }
 }
 

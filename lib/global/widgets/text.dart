@@ -7,6 +7,7 @@ Text bigText(String label,
   return Text(
     label,
     style: TextStyle(
+      
         color: color ?? AppColors.mainBlackColor,
         fontFamily: 'Roboto',
         fontWeight: weight ?? FontWeight.w400,

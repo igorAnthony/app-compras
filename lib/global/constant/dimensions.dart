@@ -89,4 +89,5 @@ class Dimensions {
    static double productImgSize = screenHeight / 8.66;
    static double productContainer = screenHeight / 11.54;
    static double shadowBlurRadius = screenWidth / 82.2;
+   static double checkBoxContainer = screenWidth / 1.37;
 }
