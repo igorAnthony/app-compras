@@ -17,6 +17,7 @@ class Products {
     this.price,
     this.stars,
     this.location,
+    this.visibility
   });
 
   Products.fromJson(Map<String, dynamic> json) {

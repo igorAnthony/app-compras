@@ -116,7 +116,7 @@ class _AdminPanelViewState extends State<AdminPanelView> {
                                               ],
                                             ),
                                           ),
-                                          product.visibility == "visible" 
+                                          product.visibility == "1"
                                               ? GestureDetector(
                                                 onTap:() {
                                                   controller.changeTheVisibility(index);

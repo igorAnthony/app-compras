@@ -38,7 +38,6 @@ class AdminProvider extends GetxService{
         'Accept': 'application/json',
         'Authorization': 'Bearer ${box.read('token')}'
       });
-      print(response);
       switch (response.statusCode) {
         case 200:
           apiResponse.data = jsonDecode(response.body)['products']
@@ -71,12 +70,13 @@ class AdminProvider extends GetxService{
       body: {
         'name' : product.name,
         'description' : product.description,
-        'price' : product.price
+        'price' : product.price,
+        'visibility' : product.visibility,
       });
 
       switch(response.statusCode){
         case 200:
-          apiResponse.data = jsonDecode(response.body);
+          apiResponse.data = Products.fromJson(jsonDecode(response.body)['product']);
           break;
         case 403:
           apiResponse.error = jsonDecode(response.body)['message'];
@@ -89,14 +89,12 @@ class AdminProvider extends GetxService{
           break;
       }
     } catch (e){
-      print(e);
       apiResponse.error = ApiConstants.serverError;
     }
     return apiResponse;
   }
   Future<ApiResponse> editProduct(Products product) async{
     ApiResponse apiResponse = ApiResponse();
-
     try{
       final response = await http.put(Uri.parse(ApiConstants.productsURL + '/${product.id}'),
       headers: {
@@ -106,9 +104,9 @@ class AdminProvider extends GetxService{
       body : {
         'name' : product.name,
         'description' : product.description,
-        'price' : product.price
+        'price' : product.price,
+        'visibility' : product.visibility
       });
-
       switch(response.statusCode){
         case 200:
           apiResponse.data = jsonDecode(response.body)['message'];
@@ -138,7 +136,7 @@ class AdminProvider extends GetxService{
         'Accept' : 'application/json',
         'Authorization' : 'Bearer ${box.read('token')}'
       });
-
+      print(response.statusCode);
       switch(response.statusCode){
         case 200:
           apiResponse.data = jsonDecode(response.body)['message'];

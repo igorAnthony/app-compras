@@ -107,17 +107,19 @@ class AdminProductDetailsView extends GetView<AdminController>{
                           decoration: kInputDecoration('Price', Icons.money, iconColor: AppColors.iconColor1),
                         ),
                       ),
-                      SizedBox(height: Dimensions.height30,),
+                      SizedBox(height: Dimensions.height10,),
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Checkbox(
-                              value: controller.isChecked, // Valor atual do checkbox
-                              onChanged: (bool? value) {
-                                controller.isChecked = !controller.isChecked;
-                              },
+                            Obx(
+                              () => Checkbox(
+                                value: controller.isChecked.value, 
+                                onChanged: (bool? value) {
+                                  controller.isChecked.value = !controller.isChecked.value;
+                                },
+                              )
                             ),
                             Expanded(
                               child: Container(
@@ -127,7 +129,7 @@ class AdminProductDetailsView extends GetView<AdminController>{
                           ],
                         ),
                       ),
-                      SizedBox(height: Dimensions.height10),
+                      SizedBox(height: Dimensions.height30),
                       Container(
                         width: double.maxFinite,
                         child: kTextButton("Save", (){
@@ -139,6 +141,23 @@ class AdminProductDetailsView extends GetView<AdminController>{
                           Get.back();
                         }, backgroundColor: AppColors.iconColor1)
                       ),
+                      SizedBox(height: Dimensions.height30),
+                      controller.isUpdated ? Container(
+                        child: GestureDetector(
+                          onTap: () {
+                            controller.deleteItem(productId!);
+                            Get.back();
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.delete, color: Color.fromARGB(255, 105, 15, 15)),
+                              SizedBox(width: Dimensions.width5),
+                              bigText("Remover item", color: Color.fromARGB(255, 105, 15, 15),),
+                            ],
+                          ),
+                        ),
+                      ) : Container()
                   ]),
                 ),
             ]),
