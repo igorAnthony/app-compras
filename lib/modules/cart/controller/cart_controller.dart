@@ -35,7 +35,7 @@ class CartController extends GetxController {
   void priceTotal(){
     double totalPrice = 0.0;
     _cartProductList.forEach((element) { 
-      totalPrice += double.parse(element.product.price!)*element.quantity;
+      totalPrice += element.product.price!*element.quantity;
     });
     totalAmount.value = totalPrice;
   }

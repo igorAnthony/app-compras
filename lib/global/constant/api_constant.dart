@@ -11,6 +11,7 @@ class ApiConstants {
   static const ordersItemsURL = baseURL + '/ordersitems';
   static const popularURL = ordersItemsURL + '/popular';
   static const recommendedURL = ordersItemsURL + '/recommended';
+  static const categoryURL = baseURL + '/categories';
 
   static const serverError = 'Server error';
   static const unauthorized = 'Unauthorized';

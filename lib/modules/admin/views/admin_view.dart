@@ -4,6 +4,7 @@ import 'package:app_compras/global/constant/route.dart';
 import 'package:app_compras/global/widgets/app_icon.dart';
 import 'package:app_compras/global/widgets/text.dart';
 import 'package:app_compras/models/products_model.dart';
+import 'package:app_compras/models/category_model.dart';
 import 'package:app_compras/modules/admin/controller/admin_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -55,8 +56,13 @@ class _AdminPanelViewState extends State<AdminPanelView> {
                         shrinkWrap: true,
                         itemCount: controller.productList.length,
                         itemBuilder: (context, index) {
-                          Products product = controller.productList[index];
+                          Products product = controller.productList[index];          
                           String productName = "";
+                          Category category = controller.getCategoryById(product.id_category!);
+                          String categoryName = "";
+                          if(category.name != null){
+                            categoryName = category.name!;
+                          }
                           if(product.name!.length >= 15){
                             productName = product.name!.substring(0,16) + "...";
                           }else{
@@ -112,7 +118,7 @@ class _AdminPanelViewState extends State<AdminPanelView> {
                                               mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
                                                 bigText("${productName}"),
-                                                smallText("subnome", size:12),
+                                                smallText("${categoryName}", size:12),
                                               ],
                                             ),
                                           ),

@@ -95,18 +95,53 @@ class AdminProductDetailsView extends GetView<AdminController>{
                         ),
                       ),
                       SizedBox(height: Dimensions.height20),
-                      kMaterialDecoration(
-                        sizeMax: 150,
-                        borderRadius: Dimensions.border10,
-                        TextFormField(
-                          controller: controller.priceController,
-                          keyboardType: TextInputType.number,
-                          enableSuggestions: true,
-                          autocorrect: true,
-                          validator: (val) => val!.isEmpty ? 'Invalid price' : null,
-                          decoration: kInputDecoration('Price', Icons.money, iconColor: AppColors.iconColor1),
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          kMaterialDecoration(
+                            sizeMax: 150,
+                            borderRadius: Dimensions.border10,
+                            TextFormField(
+                              controller: controller.priceController,
+                              keyboardType: TextInputType.number,
+                              enableSuggestions: true,
+                              autocorrect: true,
+                              validator: (val) => val!.isEmpty ? 'Invalid price' : null,
+                              decoration: kInputDecoration('Price', Icons.money, iconColor: AppColors.iconColor1),
+                            ),
+                          ),
+                          Obx(() => Container(
+                            width: 190,
+                            margin: EdgeInsets.only(left: Dimensions.width10),
+                            child: DropdownButtonFormField<int>(
+                              iconEnabledColor: AppColors.iconColor1,
+                              value: controller.selectedCategory.value,
+                              onChanged: (value) {
+                                controller.selectedCategory.value = value!;
+                              },
+                              items: controller.categoryList.map((category) {
+                                return DropdownMenuItem<int>(
+                                  value: category.id,
+                                  child: Container(margin: EdgeInsets.only(left: Dimensions.height5), child: bigText(category.name)),
+                                );
+                              }).toList(),
+                              decoration: InputDecoration(
+                                labelText: 'Category',
+                                labelStyle: TextStyle(color: AppColors.iconColor1, fontSize: Dimensions.font16),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black.withOpacity(0.2)), 
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: AppColors.iconColor1), 
+                                ),
+                              ),
+                              dropdownColor: Colors.white, 
+                            ),
+                          )),
+                        ],
                       ),
+                      
+
                       SizedBox(height: Dimensions.height10,),
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),

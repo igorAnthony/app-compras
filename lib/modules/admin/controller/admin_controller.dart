@@ -1,5 +1,7 @@
 import 'package:app_compras/models/api_response.dart';
+import 'package:app_compras/models/category_model.dart';
 import 'package:app_compras/models/products_model.dart';
+import 'package:app_compras/modules/admin/provider/category_provider.dart';
 import 'package:app_compras/modules/admin/repository/admin_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,17 +15,21 @@ class AdminController extends GetxController {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   List<dynamic> _productList = [];
+  List<dynamic> _categoryList = [];
+
   List<dynamic> get productList => _productList;
+  List<dynamic> get categoryList => _categoryList;
 
   RxBool _isLoaded = false.obs;
   RxBool get isLoaded => _isLoaded;
   RxBool isVisible = false.obs;
   RxBool isChecked = true.obs;
   bool isUpdated = false;
-
+  RxInt selectedCategory = (1).obs;
   @override
   void onInit() {
     _getProductList();
+    _getCategoryList();
     super.onInit();
   }
 
@@ -32,6 +38,19 @@ class AdminController extends GetxController {
     _productList.addAll(response.data as List<dynamic>);
     update();
     // _isLoaded.value = true;
+  }
+  Future<void> _getCategoryList() async {
+    ApiResponse response = await Get.find<CategoryProvider>().getCategoryList();
+    if(response.error == null){
+      _categoryList.addAll(response.data as List<dynamic>);
+      update();
+    }
+    // _isLoaded.value = true;
+  }
+  Category getCategoryById(int categoryId)  {
+    Category category = new Category();
+    category = _categoryList.firstWhere((category) => category.id == categoryId, orElse: () => category);
+    return category;
   }
 
   Future<void> changeTheVisibility(int index) async {
@@ -53,7 +72,7 @@ class AdminController extends GetxController {
   }
 
   Future<void> addItem() async {
-    Products newProduct = new Products(name: nameController.text, description: descriptionController.text, price: priceController.text, visibility: isChecked.value ? '1' : '0');
+    Products newProduct = new Products(name: nameController.text, description: descriptionController.text, price: double.parse(priceController.text), visibility: isChecked.value ? '1' : '0', id_category: selectedCategory.value);
     ApiResponse response = await adminRepo.createProduct(newProduct);
     if(response.error == null){
       Products createdProduct = response.data as Products;
@@ -79,6 +98,7 @@ class AdminController extends GetxController {
     _productList[index].description = descriptionController.text;
     _productList[index].price = priceController.text;
     _productList[index].visibility = isChecked.value ? "1" : "0";
+    _productList[index].id_category = selectedCategory.value;
     //Products product = new Products(name: nameController.text, description: descriptionController.text, price: priceController.text);
     ApiResponse response = await adminRepo.editProduct(_productList[index]);
     if(response.error == null){
@@ -129,14 +149,16 @@ class AdminController extends GetxController {
     priceController.text = "";
     isChecked.value = true;
     isUpdated = false;
+    selectedCategory.value = 1;
   }
   void updateTheValues(int index){
     Products product = _productList[index];
     nameController.text = product.name!;
     descriptionController.text = product.description!;
-    priceController.text = product.price!;
+    priceController.text = product.price!.toString();
     isUpdated = true;
     isChecked.value = product.visibility == "0" ? false : true;
+    selectedCategory.value = product.id_category!;
   }
 
 
