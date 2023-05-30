@@ -1,17 +1,18 @@
 import 'package:app_compras/global/constant/colors.dart';
-import 'package:app_compras/models/cart_model.dart';
 import 'package:app_compras/models/products_model.dart';
+import 'package:app_compras/modules/cart/model/cart_model.dart';
+import 'package:app_compras/modules/cart/repository/cart_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
-
-  List<CartProduct> _cartProductList = [];
+  CartRepo cartRepo = Get.find<CartRepo>();
+  List<Cart> _cartList = [];
   
   RxInt quant = 0.obs;
   RxDouble totalAmount = 0.0.obs;
 
-  List<dynamic> get cartProductList => _cartProductList;
+  List<dynamic> get cartList => _cartList;
   
   @override
   void onInit(){
@@ -19,22 +20,22 @@ class CartController extends GetxController {
   }
 
   Future<void> addItem(Products product, int quantity) async {
-    CartProduct cartItem = CartProduct(product: product, quantity: quantity);
+    Cart cartItem = Cart(product: product, quantity: quantity);
     int index = alreadyExits(cartItem);
     if(index != -1){
-      _cartProductList[index].quantity += quantity;
+      _cartList[index].quantity += quantity;
     }else{
-      _cartProductList.add(cartItem);
+      _cartList.add(cartItem);
     }
     totalItems();
     priceTotal();
-    print("cart: " + _cartProductList.length.toString());
+    cartRepo.addToCartList(_cartList);
     update();
   }
 
   void priceTotal(){
     double totalPrice = 0.0;
-    _cartProductList.forEach((element) { 
+    _cartList.forEach((element) { 
       totalPrice += element.product.price!*element.quantity;
     });
     totalAmount.value = totalPrice;
@@ -46,18 +47,18 @@ class CartController extends GetxController {
   }
 
   void decrementQuantityItem(int index){
-    _cartProductList[index].quantity--;
+    _cartList[index].quantity--;
     
-    if (_cartProductList[index].quantity == 0) {
-        _cartProductList.removeAt(index);
+    if (_cartList[index].quantity == 0) {
+        _cartList.removeAt(index);
     }
     totalItems();
     priceTotal();
     update();
   }
   void incrementQuantityItem(int index){
-    if(_cartProductList[index].quantity < 20) {
-      _cartProductList[index].quantity++;
+    if(_cartList[index].quantity < 20) {
+      _cartList[index].quantity++;
     }else{
       Get.snackbar("Item count", "You can't' add more!",
         backgroundColor: AppColors.mainColor,
@@ -67,14 +68,14 @@ class CartController extends GetxController {
     totalItems();
     priceTotal();
     update();
-    print("in "+ _cartProductList[index].quantity.toString());
+    print("in "+ _cartList[index].quantity.toString());
   }
-  int alreadyExits(CartProduct cartItem){
-    return _cartProductList.indexWhere((element) => element.product.id == cartItem.product.id);
+  int alreadyExits(Cart cartItem){
+    return _cartList.indexWhere((element) => element.product.id == cartItem.product.id);
   }
   void totalItems(){
     int totalQuantity = 0;
-    _cartProductList.forEach((element) { 
+    _cartList.forEach((element) { 
       totalQuantity += element.quantity;
     });
     quant.value = totalQuantity;

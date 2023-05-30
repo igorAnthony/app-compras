@@ -2,7 +2,7 @@ import 'package:app_compras/global/constant/colors.dart';
 import 'package:app_compras/global/constant/dimensions.dart';
 import 'package:app_compras/global/constant/route.dart';
 import 'package:app_compras/global/widgets/text.dart';
-import 'package:app_compras/models/cart_model.dart';
+import 'package:app_compras/modules/cart/model/cart_model.dart';
 import 'package:app_compras/modules/cart/controller/cart_controller.dart';
 import 'package:app_compras/modules/cart/views/cart_empty.dart';
 import 'package:app_compras/modules/popular/controllers/popular_product_controller.dart';
@@ -63,13 +63,13 @@ class CartView extends StatelessWidget {
                 child: GetBuilder<CartController>(
                     init: cartController,
                     builder: (controller) {
-                      final _cartList = controller.cartProductList;
+                      final _cartList = controller.cartList;
                       return ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: controller.cartProductList.length,
+                        itemCount: controller.cartList.length,
                         itemBuilder: (context, index) {
-                          CartProduct cartItem = _cartList[index];
+                          Cart cartItem = _cartList[index];
                           return Container(
                             margin: EdgeInsets.only(bottom: Dimensions.height10),
                             width: double.maxFinite,

@@ -17,7 +17,7 @@ class ApiConstants {
   static const unauthorized = 'Unauthorized';
   static const somethingWentWrong = 'Something went wrong, try again!';
 
-  static const String token = "";
+  static const String token = "";  
 }
 
 final box = GetStorage();
