@@ -190,15 +190,20 @@ class CartView extends StatelessWidget {
                 onTap: () {
                   //controller.addItem(product);
                 },
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: Dimensions.width20,
-                      vertical: Dimensions.width20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Dimensions.radius20),
-                    color: AppColors.mainColor,
+                child: GestureDetector(
+                  onTap: () {
+                    cartController.cartCheckOut();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Dimensions.width20,
+                        vertical: Dimensions.width20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                      color: AppColors.mainColor,
+                    ),
+                    child: bigText("Check out", color: Colors.white),
                   ),
-                  child: bigText("Check out", color: Colors.white),
                 ),
               ),
             ],

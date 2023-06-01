@@ -8,11 +8,14 @@ import 'package:get/get.dart';
 class CartController extends GetxController {
   CartRepo cartRepo = Get.find<CartRepo>();
   List<Cart> _cartList = [];
-  
+  List<CartHistory> _historyList = [];
+
   RxInt quant = 0.obs;
   RxDouble totalAmount = 0.0.obs;
 
   List<dynamic> get cartList => _cartList;
+  List<dynamic> get historyList => _historyList;
+
   
   @override
   void onInit(){
@@ -21,26 +24,15 @@ class CartController extends GetxController {
 
   Future<void> addItem(Products product, int quantity) async {
     Cart cartItem = Cart(product: product, quantity: quantity);
-    int index = alreadyExits(cartItem);
+    int index = getIndexInList(cartItem);
     if(index != -1){
       _cartList[index].quantity += quantity;
     }else{
       _cartList.add(cartItem);
     }
-    totalItems();
-    priceTotal();
-    cartRepo.addToCartList(_cartList);
-    update();
+    calculateCartTotal();
   }
 
-  void priceTotal(){
-    double totalPrice = 0.0;
-    _cartList.forEach((element) { 
-      totalPrice += element.product.price!*element.quantity;
-    });
-    totalAmount.value = totalPrice;
-  }
-  
   void reset() {
     quant.value = 1;
     totalAmount.value = 0.0;
@@ -52,9 +44,7 @@ class CartController extends GetxController {
     if (_cartList[index].quantity == 0) {
         _cartList.removeAt(index);
     }
-    totalItems();
-    priceTotal();
-    update();
+    calculateCartTotal();
   }
   void incrementQuantityItem(int index){
     if(_cartList[index].quantity < 20) {
@@ -65,20 +55,43 @@ class CartController extends GetxController {
         colorText: Colors.white,
       );
     }
-    totalItems();
-    priceTotal();
-    update();
-    print("in "+ _cartList[index].quantity.toString());
+    calculateCartTotal();
   }
-  int alreadyExits(Cart cartItem){
+  int getIndexInList(Cart cartItem){
     return _cartList.indexWhere((element) => element.product.id == cartItem.product.id);
   }
-  void totalItems(){
+  void calculateCartTotal() {
     int totalQuantity = 0;
+    double totalPrice = 0.0;
+    
     _cartList.forEach((element) { 
       totalQuantity += element.quantity;
+      totalPrice += element.product.price! * element.quantity;
     });
+    
     quant.value = totalQuantity;
-    print(quant.value);
+    totalAmount.value = totalPrice;
+    cartRepo.addToCartList(_cartList);
+    
+    update();
+  }
+  void getCartData(){
+    List<Cart> storageItems = [];
+    storageItems = cartRepo.getCartList();
+    if(!storageItems.isEmpty){
+      _cartList.addAll(storageItems);
+      calculateCartTotal();
+    }
+  }
+  void getCartHistoryData(){
+    List<CartHistory> storageItems = [];
+    storageItems = cartRepo.getCartHistory();
+    if(!storageItems.isEmpty){
+      _historyList.addAll(storageItems);
+      print(_historyList.length);
+    }
+  }
+  void cartCheckOut(){
+    cartRepo.addToCartHistory(_cartList);
   }
 }

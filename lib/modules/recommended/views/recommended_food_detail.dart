@@ -19,6 +19,7 @@ class RecommendedFoodDetailsView extends GetView<RecommendedController>{
   Widget build(BuildContext context) {
     controller.setTotal(double.parse('${controller.recommendedProductList[pageId].price}'));
     CartController cartController = Get.find<CartController>();
+    print("car: ${cartController.cartList.length}");
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,

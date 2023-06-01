@@ -16,14 +16,12 @@ class CartHistory extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          height: Dimensions.height60,
-          color: AppColors.mainColor,
-          child: Stack(
+          child: Column(
             children: [
-              Positioned(
-                top: Dimensions.height15,
-                left: Dimensions.width20,
-                right: Dimensions.width20,
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: Dimensions.width10),
+                height: Dimensions.height60,
+                color: AppColors.mainColor,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,            
                     children: [
@@ -56,9 +54,25 @@ class CartHistory extends StatelessWidget {
                       ),
                     ],
                   ),
+              ),
+                SizedBox(height: Dimensions.height10),
+                Container(
+                  child: GetBuilder<CartController>(
+                      init: cartController,
+                      builder: (controller) {
+                        return ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: controller.historyList.length,
+                          itemBuilder: (context, index) {
+                              return Text('$index');                        
+                          },
+                        );
+                      }
+                  ),
                 ),
-              ],
-            )
+            ],
+          )
           ),
         ),
       );

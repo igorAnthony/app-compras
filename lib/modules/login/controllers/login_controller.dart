@@ -1,4 +1,5 @@
 import 'package:app_compras/global/constant/route.dart';
+import 'package:app_compras/modules/cart/controller/cart_controller.dart';
 import 'package:app_compras/modules/login/repository/login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,8 @@ class LoginController extends GetxController {
       final auth = await loginRepo.loginUser(emailController.text, passwordController.text);
       if(auth.error == null){
         Get.offAndToNamed(Routes.homeRoute);
+        Get.find<CartController>().getCartData();
+        Get.find<CartController>().getCartHistoryData();
         Get.showSnackbar(
           GetSnackBar(
             message: "The user has successfully logged in.",

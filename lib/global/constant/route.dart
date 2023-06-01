@@ -1,5 +1,7 @@
 import 'package:app_compras/modules/admin/binding/admin_binding.dart';
 import 'package:app_compras/modules/admin/views/admin_add_product.dart';
+import 'package:app_compras/modules/cart/bindings/cart_binding.dart';
+import 'package:app_compras/modules/tabbar/bindings/tabbar_binding.dart';
 import 'package:app_compras/modules/tabbar/tabbar_view.dart';
 import 'package:app_compras/modules/cart/views/cart_view.dart';
 import 'package:app_compras/modules/food/views/food_body_view.dart';
@@ -66,6 +68,7 @@ class Routes{
   GetPage(
     name: homeRoute,
     page: () => TabbarView(),
+    binding: TabbarBinding()
   ),
   GetPage(
     name: foodPageRoute,
@@ -108,6 +111,7 @@ class Routes{
       var page = Get.parameters['page'];
       return CartView(page:page!);
     },
+    binding: CartBinding()
   ),
   GetPage(
     name: profileRoute,
