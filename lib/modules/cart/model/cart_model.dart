@@ -12,6 +12,7 @@ class Cart {
       'quantity': quantity,
     };
   }
+
   factory Cart.fromJson(Map<String, dynamic> json) {
     return Cart(
       product: Products.fromJson(json['product']),
@@ -20,20 +21,3 @@ class Cart {
   }
 }
 
-class CartHistory {
-  List<Cart> cart;
-
-  CartHistory({required this.cart});
-
-  Map<String, dynamic> toJson() {
-    return {
-      'cart': cart.map((item) => item.toJson()).toList(),
-    };
-  }
-
-  factory CartHistory.fromJson(Map<String, dynamic> json) {
-    return CartHistory(
-      cart: List<Cart>.from(json['cart'].map((item) => Cart.fromJson(item))),
-    );
-  }
-}

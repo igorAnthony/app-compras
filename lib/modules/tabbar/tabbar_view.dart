@@ -18,7 +18,7 @@ class _TabbarViewState extends State<TabbarView> {
   final List<Widget> _children = [
     FoodView(),
     OrdersView(),
-    CartHistory(),
+    CartHistoryView(),
     ProfileView(),
     AdminPanelView(),
   ];

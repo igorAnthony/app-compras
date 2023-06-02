@@ -26,20 +26,21 @@ InputDecoration kInputDecorationDescription(String label, IconData icon, {Color?
     floatingLabelBehavior: FloatingLabelBehavior.never,
   );
 }
-Material kMaterialDecoration(Widget textFormField, {double? borderRadius, double? sizeMax}) {
-  if(borderRadius == null){
+Material buildMaterialDecoration<T extends Widget>(T child, {double? borderRadius, double? sizeMax, double? heightElevation}) {
+  if (borderRadius == null) {
     borderRadius = Dimensions.border30;
   }
   return Material(
-    elevation: Dimensions.height5,
+    elevation: heightElevation??Dimensions.height5,
     borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
     shadowColor: Colors.white,
     child: Container(
       width: sizeMax ?? double.maxFinite,
-      child: textFormField,
+      child: child,
     ),
   );
 }
+
 
 TextButton kTextButton(String label, Function onPressed, {Color? backgroundColor, double? fontSize}) {
   return TextButton(

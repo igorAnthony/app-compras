@@ -5,6 +5,8 @@ import 'package:app_compras/modules/cart/repository/cart_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../model/cart_model_history.dart';
+
 class CartController extends GetxController {
   CartRepo cartRepo = Get.find<CartRepo>();
   List<Cart> _cartList = [];
@@ -30,6 +32,14 @@ class CartController extends GetxController {
     }else{
       _cartList.add(cartItem);
     }
+    Get.showSnackbar(
+      GetSnackBar(
+        backgroundColor: AppColors.mainColor,
+        message: "Has been added to cart!",
+        icon: const Icon(Icons.add),
+        duration: const Duration(seconds: 1),
+      ),
+    );
     calculateCartTotal();
   }
 
@@ -93,5 +103,19 @@ class CartController extends GetxController {
   }
   void cartCheckOut(){
     cartRepo.addToCartHistory(_cartList);
+    _cartList = [];
+    cartRepo.addToCartList(_cartList);
+    calculateCartTotal();
+    update();
+  }
+  void addPreviousCartListInCart(int cartHistoryIndex){
+    final CartHistory? previousCartList = _historyList[cartHistoryIndex];
+    
+    if(previousCartList != null){
+      List<Cart> listCart = previousCartList.cart;
+      listCart.forEach((element) {
+        addItem(element.product, element.quantity);
+      });
+    }
   }
 }

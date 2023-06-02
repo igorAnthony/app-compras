@@ -36,7 +36,7 @@ class RegisterView extends GetView<RegisterController> {
                         )
                     ),
                   ),
-                  kMaterialDecoration(TextFormField(
+                  buildMaterialDecoration(TextFormField(
                       keyboardType: TextInputType.name,
                       enableSuggestions: false,
                       autocorrect: false,
@@ -46,7 +46,7 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                   ),
                   SizedBox(height: Dimensions.height10),
-                  kMaterialDecoration(TextFormField(
+                  buildMaterialDecoration(TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       enableSuggestions: false,
                       autocorrect: false,
@@ -56,7 +56,7 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                   ),
                   SizedBox(height: Dimensions.height10),
-                  kMaterialDecoration(TextFormField(
+                  buildMaterialDecoration(TextFormField(
                       controller: controller.passwordController,
                       enableSuggestions: false,
                       autocorrect: false,
@@ -67,7 +67,7 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                   ),
                   SizedBox(height: Dimensions.height10),
-                  kMaterialDecoration(TextFormField(
+                  buildMaterialDecoration(TextFormField(
                       controller: controller.passwordConfirmationController,
                       enableSuggestions: false,
                       autocorrect: false,

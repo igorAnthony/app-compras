@@ -68,7 +68,7 @@ class AdminProductDetailsView extends GetView<AdminController>{
                         ],
                       ),
                       SizedBox(height: Dimensions.height40),
-                      kMaterialDecoration(
+                      buildMaterialDecoration(
                         borderRadius: Dimensions.border10,
                         TextFormField(
                           controller: controller.nameController,
@@ -80,7 +80,7 @@ class AdminProductDetailsView extends GetView<AdminController>{
                         ),
                       ),
                       SizedBox(height: Dimensions.height20),
-                      kMaterialDecoration(
+                      buildMaterialDecoration(
                         borderRadius: Dimensions.border10,
                         TextFormField(
                           controller: controller.descriptionController,
@@ -98,7 +98,7 @@ class AdminProductDetailsView extends GetView<AdminController>{
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          kMaterialDecoration(
+                          buildMaterialDecoration(
                             sizeMax: 150,
                             borderRadius: Dimensions.border10,
                             TextFormField(
