@@ -1,15 +1,15 @@
-import 'package:app_compras/global/constant/colors.dart';
-import 'package:app_compras/global/constant/dimensions.dart';
-import 'package:app_compras/global/constant/route.dart';
-import 'package:app_compras/global/widgets/text.dart';
-import 'package:app_compras/modules/cart/model/cart_model.dart';
-import 'package:app_compras/modules/cart/controller/cart_controller.dart';
-import 'package:app_compras/modules/cart/views/cart_empty.dart';
-import 'package:app_compras/modules/popular/controllers/popular_product_controller.dart';
-import 'package:app_compras/modules/recommended/controllers/recommended_controller.dart';
+import 'package:eisteintaste/global/constant/colors.dart';
+import 'package:eisteintaste/global/constant/dimensions.dart';
+import 'package:eisteintaste/global/constant/route.dart';
+import 'package:eisteintaste/global/widgets/text.dart';
+import 'package:eisteintaste/modules/cart/model/cart_model.dart';
+import 'package:eisteintaste/modules/cart/controller/cart_controller.dart';
+import 'package:eisteintaste/modules/cart/views/cart_empty.dart';
+import 'package:eisteintaste/modules/popular/controllers/popular_product_controller.dart';
+import 'package:eisteintaste/modules/recommended/controllers/recommended_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app_compras/global/widgets/app_icon.dart';
+import 'package:eisteintaste/global/widgets/app_icon.dart';
 
 class CartView extends StatelessWidget {
   final String page;

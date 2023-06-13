@@ -1,4 +1,4 @@
-import 'package:app_compras/models/products_model.dart';
+import 'package:eisteintaste/models/products_model.dart';
 
 class Cart {
   Products product;

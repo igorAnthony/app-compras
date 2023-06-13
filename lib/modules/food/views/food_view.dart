@@ -1,7 +1,7 @@
-import 'package:app_compras/global/widgets/text.dart';
-import 'package:app_compras/global/constant/colors.dart';
-import 'package:app_compras/global/constant/dimensions.dart';
-import 'package:app_compras/modules/food/views/food_body_view.dart';
+import 'package:eisteintaste/global/widgets/text.dart';
+import 'package:eisteintaste/global/constant/colors.dart';
+import 'package:eisteintaste/global/constant/dimensions.dart';
+import 'package:eisteintaste/modules/food/views/food_body_view.dart';
 import 'package:flutter/material.dart';
 
 class FoodView extends StatefulWidget {

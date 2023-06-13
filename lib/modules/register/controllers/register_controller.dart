@@ -1,8 +1,8 @@
-import 'package:app_compras/global/constant/route.dart';
-import 'package:app_compras/modules/register/repository/register_repository.dart';
+import 'package:eisteintaste/global/constant/route.dart';
+import 'package:eisteintaste/modules/register/repository/register_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app_compras/models/user.dart';
+import 'package:eisteintaste/models/user.dart';
 
 class RegisterController extends GetxController {
   final RegisterRepository registerRepo = Get.find<RegisterRepository>();

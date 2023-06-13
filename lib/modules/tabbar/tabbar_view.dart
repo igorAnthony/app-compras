@@ -1,10 +1,10 @@
-import 'package:app_compras/global/constant/api_constant.dart';
-import 'package:app_compras/global/constant/colors.dart';
-import 'package:app_compras/modules/admin/views/admin_view.dart';
-import 'package:app_compras/modules/cart/views/cart_history.dart';
-import 'package:app_compras/modules/food/views/food_view.dart';
-import 'package:app_compras/modules/orders/views/orders_view.dart';
-import 'package:app_compras/modules/profile/views/profile_view.dart';
+import 'package:eisteintaste/global/constant/api_constant.dart';
+import 'package:eisteintaste/global/constant/colors.dart';
+import 'package:eisteintaste/modules/admin/views/admin_view.dart';
+import 'package:eisteintaste/modules/cart/views/cart_history.dart';
+import 'package:eisteintaste/modules/food/views/food_view.dart';
+import 'package:eisteintaste/modules/orders/views/orders_view.dart';
+import 'package:eisteintaste/modules/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
 
 

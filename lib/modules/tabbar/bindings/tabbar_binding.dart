@@ -1,4 +1,4 @@
-import 'package:app_compras/modules/tabbar/controller/tabbar_controller.dart';
+import 'package:eisteintaste/modules/tabbar/controller/tabbar_controller.dart';
 import 'package:get/get.dart';
 
 class TabbarBinding implements Bindings {

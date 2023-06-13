@@ -1,4 +1,4 @@
-package com.example.app_compras
+package com.example.eisteintaste
 
 import io.flutter.embedding.android.FlutterActivity
 

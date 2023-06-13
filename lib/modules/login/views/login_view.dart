@@ -1,9 +1,9 @@
-import 'package:app_compras/global/constant/decoration.dart';
-import 'package:app_compras/global/constant/dimensions.dart';
-import 'package:app_compras/global/constant/route.dart';
-import 'package:app_compras/global/widgets/text.dart';
+import 'package:eisteintaste/global/constant/decoration.dart';
+import 'package:eisteintaste/global/constant/dimensions.dart';
+import 'package:eisteintaste/global/constant/route.dart';
+import 'package:eisteintaste/global/widgets/text.dart';
 import 'package:flutter/material.dart';
-import 'package:app_compras/modules/login/controllers/login_controller.dart';
+import 'package:eisteintaste/modules/login/controllers/login_controller.dart';
 import 'package:get/get.dart';
 
 class LoginView extends GetView<LoginController> {

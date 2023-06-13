@@ -1,5 +1,5 @@
-import 'package:app_compras/models/api_response.dart';
-import 'package:app_compras/modules/orders/provider/orders_provider.dart';
+import 'package:eisteintaste/models/api_response.dart';
+import 'package:eisteintaste/modules/orders/provider/orders_provider.dart';
 import 'package:get/get.dart';
 
 class OrdersRepository extends GetxService {

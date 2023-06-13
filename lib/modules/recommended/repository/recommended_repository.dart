@@ -1,5 +1,5 @@
-import 'package:app_compras/models/api_response.dart';
-import 'package:app_compras/modules/recommended/provider/recommended_provider.dart';
+import 'package:eisteintaste/models/api_response.dart';
+import 'package:eisteintaste/modules/recommended/provider/recommended_provider.dart';
 import 'package:get/get.dart';
 
 class RecommendedRepository extends GetxService {

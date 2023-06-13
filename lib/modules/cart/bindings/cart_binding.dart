@@ -1,5 +1,5 @@
-import 'package:app_compras/modules/cart/controller/cart_controller.dart';
-import 'package:app_compras/modules/cart/repository/cart_repository.dart';
+import 'package:eisteintaste/modules/cart/controller/cart_controller.dart';
+import 'package:eisteintaste/modules/cart/repository/cart_repository.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

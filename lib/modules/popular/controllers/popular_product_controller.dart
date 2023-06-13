@@ -1,8 +1,8 @@
-import 'package:app_compras/models/api_response.dart';
-import 'package:app_compras/global/constant/colors.dart';
-import 'package:app_compras/models/products_model.dart';
-import 'package:app_compras/modules/cart/controller/cart_controller.dart';
-import 'package:app_compras/modules/popular/repository/popular_repository.dart';
+import 'package:eisteintaste/models/api_response.dart';
+import 'package:eisteintaste/global/constant/colors.dart';
+import 'package:eisteintaste/models/products_model.dart';
+import 'package:eisteintaste/modules/cart/controller/cart_controller.dart';
+import 'package:eisteintaste/modules/popular/repository/popular_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

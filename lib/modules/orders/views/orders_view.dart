@@ -1,9 +1,9 @@
-import 'package:app_compras/models/orders_model.dart';
-import 'package:app_compras/global/constant/colors.dart';
-import 'package:app_compras/global/constant/dimensions.dart';
-import 'package:app_compras/global/widgets/text.dart';
-import 'package:app_compras/modules/orders/controller/orders_controller.dart';
-import 'package:app_compras/modules/orders/views/orders_details_view.dart';
+import 'package:eisteintaste/models/orders_model.dart';
+import 'package:eisteintaste/global/constant/colors.dart';
+import 'package:eisteintaste/global/constant/dimensions.dart';
+import 'package:eisteintaste/global/widgets/text.dart';
+import 'package:eisteintaste/modules/orders/controller/orders_controller.dart';
+import 'package:eisteintaste/modules/orders/views/orders_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

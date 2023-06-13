@@ -1,4 +1,4 @@
-import 'package:app_compras/modules/cart/model/cart_model.dart';
+import 'package:eisteintaste/modules/cart/model/cart_model.dart';
 
 class CartHistory {
   List<Cart> cart;

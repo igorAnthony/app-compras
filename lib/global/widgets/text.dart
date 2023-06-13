@@ -1,5 +1,5 @@
-import 'package:app_compras/global/constant/colors.dart';
-import 'package:app_compras/global/constant/dimensions.dart';
+import 'package:eisteintaste/global/constant/colors.dart';
+import 'package:eisteintaste/global/constant/dimensions.dart';
 import 'package:flutter/material.dart';
 
 Text bigText(String label,

@@ -1,5 +1,5 @@
-import 'package:app_compras/models/api_response.dart';
-import 'package:app_compras/modules/popular/provider/popular_provider.dart';
+import 'package:eisteintaste/models/api_response.dart';
+import 'package:eisteintaste/modules/popular/provider/popular_provider.dart';
 
 class PopularRepository{
   final PopularProvider popularProvider;

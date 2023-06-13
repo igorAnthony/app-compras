@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:app_compras/global/constant/app_constant.dart';
-import 'package:app_compras/modules/cart/model/cart_model.dart';
+import 'package:eisteintaste/global/constant/app_constant.dart';
+import 'package:eisteintaste/modules/cart/model/cart_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/cart_model_history.dart';

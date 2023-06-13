@@ -1,8 +1,8 @@
-import 'package:app_compras/models/payment_voucher_model.dart';
-import 'package:app_compras/global/constant/colors.dart';
-import 'package:app_compras/global/constant/dimensions.dart';
-import 'package:app_compras/global/widgets/text.dart';
-import 'package:app_compras/modules/orders/controller/orders_controller.dart';
+import 'package:eisteintaste/models/payment_voucher_model.dart';
+import 'package:eisteintaste/global/constant/colors.dart';
+import 'package:eisteintaste/global/constant/dimensions.dart';
+import 'package:eisteintaste/global/widgets/text.dart';
+import 'package:eisteintaste/modules/orders/controller/orders_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

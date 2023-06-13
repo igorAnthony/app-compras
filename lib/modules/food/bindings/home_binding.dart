@@ -1,4 +1,4 @@
-// import 'package:app_compras/modules/home/controllers/home_controller.dart';
+// import 'package:eisteintaste/modules/home/controllers/home_controller.dart';
 // import 'package:get/get.dart';
 
 // class  HomeBinding  extends  Bindings {

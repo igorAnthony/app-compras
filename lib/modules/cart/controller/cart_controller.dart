@@ -1,7 +1,7 @@
-import 'package:app_compras/global/constant/colors.dart';
-import 'package:app_compras/models/products_model.dart';
-import 'package:app_compras/modules/cart/model/cart_model.dart';
-import 'package:app_compras/modules/cart/repository/cart_repository.dart';
+import 'package:eisteintaste/global/constant/colors.dart';
+import 'package:eisteintaste/models/products_model.dart';
+import 'package:eisteintaste/modules/cart/model/cart_model.dart';
+import 'package:eisteintaste/modules/cart/repository/cart_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

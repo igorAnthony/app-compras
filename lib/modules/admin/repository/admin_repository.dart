@@ -1,6 +1,6 @@
-import 'package:app_compras/models/api_response.dart';
-import 'package:app_compras/models/products_model.dart';
-import 'package:app_compras/modules/admin/provider/admin_provider.dart';
+import 'package:eisteintaste/models/api_response.dart';
+import 'package:eisteintaste/models/products_model.dart';
+import 'package:eisteintaste/modules/admin/provider/admin_provider.dart';
 import 'package:get/get.dart';
 
 class AdminRepository extends GetxService {

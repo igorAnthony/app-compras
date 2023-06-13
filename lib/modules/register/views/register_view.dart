@@ -1,7 +1,7 @@
-import 'package:app_compras/global/constant/decoration.dart';
-import 'package:app_compras/global/constant/dimensions.dart';
-import 'package:app_compras/global/constant/route.dart';
-import 'package:app_compras/modules/register/controllers/register_controller.dart';
+import 'package:eisteintaste/global/constant/decoration.dart';
+import 'package:eisteintaste/global/constant/dimensions.dart';
+import 'package:eisteintaste/global/constant/route.dart';
+import 'package:eisteintaste/modules/register/controllers/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

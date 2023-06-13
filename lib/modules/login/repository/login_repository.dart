@@ -1,4 +1,4 @@
-import 'package:app_compras/models/api_response.dart';
+import 'package:eisteintaste/models/api_response.dart';
 import 'package:get/get.dart';
 
 class LoginRepository extends GetxService {

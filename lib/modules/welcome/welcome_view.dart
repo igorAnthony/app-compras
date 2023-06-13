@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:app_compras/global/constant/dimensions.dart';
-import 'package:app_compras/global/constant/route.dart';
+import 'package:eisteintaste/global/constant/dimensions.dart';
+import 'package:eisteintaste/global/constant/route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

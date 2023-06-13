@@ -1,6 +1,6 @@
-import 'package:app_compras/modules/orders/controller/orders_controller.dart';
-import 'package:app_compras/modules/orders/provider/orders_provider.dart';
-import 'package:app_compras/modules/orders/repository/orders_repository.dart';
+import 'package:eisteintaste/modules/orders/controller/orders_controller.dart';
+import 'package:eisteintaste/modules/orders/provider/orders_provider.dart';
+import 'package:eisteintaste/modules/orders/repository/orders_repository.dart';
 import 'package:get/get.dart';
 
 class OrdersBinding implements Bindings {

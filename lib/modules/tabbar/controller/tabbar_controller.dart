@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app_compras/global/constant/route.dart';
+import 'package:eisteintaste/global/constant/route.dart';
 
 class TabbarController extends GetxController {
   var currentIndex = 0.obs;

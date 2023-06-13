@@ -1,4 +1,4 @@
-import 'package:app_compras/global/constant/api_constant.dart';
+import 'package:eisteintaste/global/constant/api_constant.dart';
 
 class User {
   int? id;

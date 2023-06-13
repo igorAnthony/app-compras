@@ -1,6 +1,6 @@
 {
-    "name": "app_compras",
-    "short_name": "app_compras",
+    "name": "eisteintaste",
+    "short_name": "eisteintaste",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

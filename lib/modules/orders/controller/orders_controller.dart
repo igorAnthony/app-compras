@@ -1,6 +1,6 @@
-import 'package:app_compras/models/api_response.dart';
-import 'package:app_compras/models/orders_model.dart';
-import 'package:app_compras/modules/orders/repository/orders_repository.dart';
+import 'package:eisteintaste/models/api_response.dart';
+import 'package:eisteintaste/models/orders_model.dart';
+import 'package:eisteintaste/modules/orders/repository/orders_repository.dart';
 import 'package:get/get.dart';
 
 class OrdersController extends GetxController {

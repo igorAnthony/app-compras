@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:app_compras/models/api_response.dart';
-import 'package:app_compras/models/category_model.dart';
-import 'package:app_compras/global/constant/api_constant.dart';
+import 'package:eisteintaste/models/api_response.dart';
+import 'package:eisteintaste/models/category_model.dart';
+import 'package:eisteintaste/global/constant/api_constant.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 

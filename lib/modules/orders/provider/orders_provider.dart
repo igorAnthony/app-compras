@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:app_compras/models/api_response.dart';
-import 'package:app_compras/models/orders_model.dart';
-import 'package:app_compras/models/payment_voucher_model.dart';
-import 'package:app_compras/global/constant/api_constant.dart';
+import 'package:eisteintaste/models/api_response.dart';
+import 'package:eisteintaste/models/orders_model.dart';
+import 'package:eisteintaste/models/payment_voucher_model.dart';
+import 'package:eisteintaste/global/constant/api_constant.dart';
 import 'package:http/http.dart' as http;
 class OrdersProvider{
   Future<ApiResponse> getOrdersList() async {

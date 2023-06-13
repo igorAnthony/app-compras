@@ -1,6 +1,6 @@
-import 'package:app_compras/modules/popular/controllers/popular_product_controller.dart';
-import 'package:app_compras/modules/popular/provider/popular_provider.dart';
-import 'package:app_compras/modules/popular/repository/popular_repository.dart';
+import 'package:eisteintaste/modules/popular/controllers/popular_product_controller.dart';
+import 'package:eisteintaste/modules/popular/provider/popular_provider.dart';
+import 'package:eisteintaste/modules/popular/repository/popular_repository.dart';
 import 'package:get/get.dart';
 
 class PopularBinding implements Bindings {

@@ -1,4 +1,4 @@
-import 'package:app_compras/global/constant/dimensions.dart';
+import 'package:eisteintaste/global/constant/dimensions.dart';
 import 'package:flutter/material.dart';
 
 Container appIcon(IconData icon,

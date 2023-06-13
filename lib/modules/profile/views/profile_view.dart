@@ -1,6 +1,6 @@
-import 'package:app_compras/global/constant/colors.dart';
-import 'package:app_compras/global/constant/dimensions.dart';
-import 'package:app_compras/global/widgets/profile_container.dart';
+import 'package:eisteintaste/global/constant/colors.dart';
+import 'package:eisteintaste/global/constant/dimensions.dart';
+import 'package:eisteintaste/global/widgets/profile_container.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {
