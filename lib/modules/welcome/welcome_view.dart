@@ -4,6 +4,7 @@ import 'package:eisteintaste/global/constant/dimensions.dart';
 import 'package:eisteintaste/global/constant/route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeView extends StatefulWidget {
   const WelcomeView({super.key});
@@ -31,7 +32,7 @@ class _WelcomeViewState extends State<WelcomeView> with TickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFF1b141e),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -39,16 +40,18 @@ class _WelcomeViewState extends State<WelcomeView> with TickerProviderStateMixin
             scale: animation, 
             child: Center(
               child: Image.asset(
-                'assets/images/logo.png', 
+                'assets/images/logo6.png', 
                 width: Dimensions.logoSize
               )
             )
           ),
           Center(
-            child: Image.asset(
-              'assets/images/textlogo.png', 
-              width: Dimensions.logoSize
-            )
+            child: Text('Einstein Taste',
+              style: GoogleFonts.amaticSc(
+                fontSize: Dimensions.height45,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFFfa720a)
+            ),)
           ),
         ],
       ),

@@ -174,11 +174,11 @@ class _FoodBodyViewState extends State<FoodBodyView> {
                                               iconAndTextWidget(
                                                   "Normal",
                                                   Icons.circle_sharp,
-                                                  AppColors.iconColor1),
+                                                  AppColors.iconColor4),
                                               iconAndTextWidget(
                                                   "1.7km",
                                                   Icons.location_on,
-                                                  AppColors.mainColor),
+                                                  AppColors.iconColor5),
                                               iconAndTextWidget(
                                                   "32min",
                                                   Icons.access_time_rounded,

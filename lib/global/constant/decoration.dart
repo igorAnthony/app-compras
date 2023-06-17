@@ -33,7 +33,7 @@ Material buildMaterialDecoration<T extends Widget>(T child, {double? borderRadiu
   return Material(
     elevation: heightElevation??Dimensions.height5,
     borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
-    shadowColor: Colors.white,
+    shadowColor: Color(0xFF1b141e),
     child: Container(
       width: sizeMax ?? double.maxFinite,
       child: child,
@@ -62,9 +62,9 @@ Row kLoginOrRegisterHint(String text, String label, Function onTap) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      smallText(text, size: Dimensions.font18, color: AppColors.blackColorWithOpacity),
+      smallText(text, size: Dimensions.font18, color: Colors.white.withOpacity(0.3)),
       GestureDetector(
-        child: bigText(label, size: Dimensions.font18, weight: FontWeight.bold),
+        child: bigText(label, size: Dimensions.font18, weight: FontWeight.bold, color: Colors.white.withOpacity(0.5)),
         onTap: () => onTap(),
       )
     ],

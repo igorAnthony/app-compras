@@ -36,31 +36,31 @@ class PopularFoodDetailsView extends StatelessWidget{
                   },
                   child: appIcon(Icons.arrow_back_ios)
                 ),
-                Stack(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.getCart("popularview"));
-                      },
-                      child: appIcon(Icons.shopping_cart_outlined)
-                    ),
-                    Obx(() => cartController.quant.value >= 1 ? 
-                      Positioned(
-                        right: Dimensions.height5,
-                        top: Dimensions.height5,
-                        child: Container(
-                          width: Dimensions.height15,
-                          height: Dimensions.height15,
-                          decoration: BoxDecoration(
-                            color: AppColors.mainColor,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Center(child: bigText("${cartController.quant.value}", color: Colors.white, size: 12)),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.getCart("popularview"));
+                  },
+                  child: Stack(
+                    children: [
+                      appIcon(Icons.shopping_cart_outlined),
+                      Obx(() => cartController.quant.value >= 1 ? 
+                        Positioned(
+                          right: Dimensions.height5,
+                          top: Dimensions.height5,
+                          child: Container(
+                            width: Dimensions.height15,
+                            height: Dimensions.height15,
+                            decoration: BoxDecoration(
+                              color: AppColors.mainColor,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Center(child: bigText("${cartController.quant.value}", color: Colors.white, size: 12)),
+                          )
                         )
-                      )
-                      :Container()
-                    ),
-                  ]
+                        :Container()
+                      ),
+                    ]
+                  ),
                 )
               ],
             ),
@@ -70,7 +70,7 @@ class PopularFoodDetailsView extends StatelessWidget{
                 width: double.maxFinite,
                 child: Center(
                     child: bigText("${controller.popularProductList[pageId].name}", size: Dimensions.font26)),
-                padding: EdgeInsets.only(top: 5, bottom: 10),
+                padding: EdgeInsets.only(top: Dimensions.height5, bottom: Dimensions.height10),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -82,7 +82,7 @@ class PopularFoodDetailsView extends StatelessWidget{
             ),
             pinned: true,
             backgroundColor: Color.fromARGB(255, 248, 200, 67),
-            expandedHeight: 300,
+            expandedHeight: Dimensions.height290,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
                 "assets/images/food2.jpg",
@@ -96,7 +96,8 @@ class PopularFoodDetailsView extends StatelessWidget{
                 child: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
+                  color: Colors.white,
+                  margin: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height5),
                   child: ExpandableText(
                     text:
                         '${controller.popularProductList[pageId].description}',

@@ -15,7 +15,7 @@ class RecommendedController extends GetxController {
 
   RxInt quant = 0.obs;
   RxDouble total = 0.0.obs;
-  RxDouble price_item = 0.0.obs;
+  RxDouble productPrice = 0.0.obs;
   @override
   void onInit(){
     getRecommendedProductList();
@@ -27,9 +27,12 @@ class RecommendedController extends GetxController {
     _recommendedProductList.addAll(response.data as List<dynamic>);
     update();
   }
-  void setTotal(double total_price){
-    price_item.value = total_price;
-    total.value = price_item.value;
+  void priceTotal(){
+    total.value = productPrice * quant.value.toDouble();
+  }
+  void setPrice(double price){
+    productPrice.value = price;
+    priceTotal();
   }
   void incrementQuant(){
     if(quant.value < 20) {
@@ -55,10 +58,6 @@ class RecommendedController extends GetxController {
   }
   void addItem(Products product){
     cartController.addItem(product, quant.value);
-  }
-  void priceTotal(){
-    //print(quant.value.toDouble());
-    total.value =  price_item * quant.value.toDouble();
   }
   void reset(){
     quant.value = 0;

@@ -10,7 +10,7 @@ Text bigText(String label,
       
         color: color ?? AppColors.mainBlackColor,
         fontFamily: 'Roboto',
-        fontWeight: weight ?? FontWeight.w400,
+        fontWeight: weight ?? FontWeight.normal,
         fontSize: size ?? Dimensions.font18,
         overflow: overflow ?? TextOverflow.ellipsis, 
         ),

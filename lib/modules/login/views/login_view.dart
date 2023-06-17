@@ -1,3 +1,4 @@
+import 'package:eisteintaste/global/constant/colors.dart';
 import 'package:eisteintaste/global/constant/decoration.dart';
 import 'package:eisteintaste/global/constant/dimensions.dart';
 import 'package:eisteintaste/global/constant/route.dart';
@@ -9,9 +10,10 @@ import 'package:get/get.dart';
 class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
+    print(Dimensions.screenWidth);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFF1b141e),
         body: Form(
             key: controller.formKey,
             child: SingleChildScrollView(
@@ -29,16 +31,16 @@ class LoginView extends GetView<LoginController> {
                       Center(
                         child: 
                           Image.asset(
-                            'assets/images/logo.png',
-                            width: Dimensions.height120
+                            'assets/images/logo6.png',
+                            height: 200
                           )
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(left: Dimensions.width5),
-                      child: bigText("Hello", size: Dimensions.font60, weight: FontWeight.bold)
+                      child: bigText("Hello", size: Dimensions.font60, weight: FontWeight.bold, color: Colors.white)
                     ),
-                    smallText("Sign into your account", size: Dimensions.font18),
+                    smallText("Sign into your account", size: Dimensions.font18, color: Colors.white.withOpacity(0.3)),
                     SizedBox(height: Dimensions.height45),
                     Material(
                       elevation: Dimensions.height5,
@@ -51,7 +53,7 @@ class LoginView extends GetView<LoginController> {
                         controller: controller.emailController,
                         // validator: (val) =>
                         //     val!.isEmpty ? 'Invalid email address' : null,
-                        decoration: kInputDecoration('Email', Icons.alternate_email),
+                        decoration: kInputDecoration('Email', Icons.alternate_email, iconColor: AppColors.iconColor3),
                       ),
                     ),
                     SizedBox(height: Dimensions.height10),
@@ -66,7 +68,7 @@ class LoginView extends GetView<LoginController> {
                         obscureText: true,
                         // validator: (val) =>
                         //     val!.length < 6 ? 'Invalid password address' : null,
-                        decoration: kInputDecoration('Password', Icons.password),
+                        decoration: kInputDecoration('Password', Icons.password, iconColor: AppColors.iconColor3),
                       ),
                     ),
                     SizedBox(height: Dimensions.height80),
@@ -77,7 +79,7 @@ class LoginView extends GetView<LoginController> {
                             ),
                           )
                         : Center(
-                          child: kTextButton('Sign in', () {
+                          child: kTextButton(backgroundColor: AppColors.iconColor3,'Sign in', () {
                             if (controller.formKey.currentState!.validate()) {
                               controller.login();
                             }

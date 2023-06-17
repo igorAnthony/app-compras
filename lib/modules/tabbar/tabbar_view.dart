@@ -50,14 +50,14 @@ class _TabbarViewState extends State<TabbarView> {
         label: 'Profile',
       ),
     ];
-    if(box.read('admin') == 1){
-        bottomNavBarItems.add(
-          BottomNavigationBarItem(
-            icon: Icon(Icons.admin_panel_settings),
-            label: 'Admin',
-          ),
-      );
-    }
+    // if(box.read('admin') == 1){
+    //     bottomNavBarItems.add(
+    //       BottomNavigationBarItem(
+    //         icon: Icon(Icons.admin_panel_settings),
+    //         label: 'Admin',
+    //       ),
+    //   );
+    // }
     
 
     return Scaffold(

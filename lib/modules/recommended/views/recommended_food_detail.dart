@@ -17,7 +17,7 @@ class RecommendedFoodDetailsView extends GetView<RecommendedController>{
 
   @override
   Widget build(BuildContext context) {
-    controller.setTotal(double.parse('${controller.recommendedProductList[pageId].price}'));
+    controller.setPrice(double.parse('${controller.recommendedProductList[pageId].price}'));
     CartController cartController = Get.find<CartController>();
     print("car: ${cartController.cartList.length}");
     return SafeArea(
@@ -51,32 +51,32 @@ class RecommendedFoodDetailsView extends GetView<RecommendedController>{
                       controller.reset();
                     },
                     child: appIcon(Icons.arrow_back_ios)),
-                  Stack(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.getCart("recommendedview"));
-                      },
-                      child: appIcon(Icons.shopping_cart_outlined)
-                    ),
-                    Obx(() => cartController.quant.value >= 1 ? 
-                      Positioned(
-                        right: Dimensions.height5,
-                        top: Dimensions.height5,
-                        child: Container(
-                          width: Dimensions.height15,
-                          height: Dimensions.height15,
-                          decoration: BoxDecoration(
-                            color: AppColors.mainColor,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Center(child: bigText("${cartController.quant.value}", color: Colors.white, size: 12)),
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(Routes.getCart("recommendedview"));
+                    },
+                    child: Stack(
+                    children: [
+                      appIcon(Icons.shopping_cart_outlined),
+                      Obx(() => cartController.quant.value >= 1 ? 
+                        Positioned(
+                          right: Dimensions.height5,
+                          top: Dimensions.height5,
+                          child: Container(
+                            width: Dimensions.height15,
+                            height: Dimensions.height15,
+                            decoration: BoxDecoration(
+                              color: AppColors.mainColor,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Center(child: bigText("${cartController.quant.value}", color: Colors.white, size: 12)),
+                          )
                         )
-                      )
-                      :Container()
-                    ),
-                  ]
-                )
+                        :Container()
+                      ),
+                    ]
+                                  ),
+                  )
                 ],
               ),
             ),

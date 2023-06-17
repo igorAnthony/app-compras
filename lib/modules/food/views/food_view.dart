@@ -48,7 +48,7 @@ class _FoodViewState extends State<FoodView> {
                       decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(Dimensions.width15),
-                          color: Color(0xFF89dad0)),
+                          color: AppColors.mainColor),
                       child: Icon(
                         Icons.search,
                         color: Colors.white,

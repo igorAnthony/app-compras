@@ -17,7 +17,7 @@ Column columnDetailsFood(String label, {double? sizeLabel}) {
                 5,
                 (index) => Icon(
                       Icons.star,
-                      color: AppColors.mainColor,
+                      color: Color(0xFFfec908),
                       size: 14,
                     )),
           ),
@@ -31,8 +31,8 @@ Column columnDetailsFood(String label, {double? sizeLabel}) {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          iconAndTextWidget("Normal", Icons.circle_sharp, AppColors.iconColor1),
-          iconAndTextWidget("1.7km", Icons.location_on, AppColors.mainColor),
+          iconAndTextWidget("Normal", Icons.circle_sharp, AppColors.iconColor4),
+          iconAndTextWidget("1.7km", Icons.location_on, AppColors.iconColor5),
           iconAndTextWidget(
               "32min", Icons.access_time_rounded, AppColors.iconColor2),
         ],
