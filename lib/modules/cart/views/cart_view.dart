@@ -6,6 +6,7 @@ import 'package:eisteintaste/modules/cart/model/cart_model.dart';
 import 'package:eisteintaste/modules/cart/controller/cart_controller.dart';
 import 'package:eisteintaste/modules/cart/views/cart_empty.dart';
 import 'package:eisteintaste/modules/popular/controllers/popular_product_controller.dart';
+import 'package:eisteintaste/modules/profile/controller/user_controller.dart';
 import 'package:eisteintaste/modules/recommended/controllers/recommended_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -78,7 +79,7 @@ class CartView extends StatelessWidget {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    var popularIndex = Get.find<PopularController>().popularProductList.indexOf(_cartList[index].product!);
+                                    var popularIndex = Get.find<PopularController>().popularProductList.indexOf(_cartList[index].product);
                                     if(popularIndex!=-1){
                                       if(page == "popularview"){
                                         Get.back();
@@ -86,7 +87,7 @@ class CartView extends StatelessWidget {
                                         Get.toNamed(Routes.getPopularFood(popularIndex));
                                       }
                                     }else{
-                                      var recommendedIndex = Get.find<RecommendedController>().recommendedProductList.indexOf(_cartList[index].product!);
+                                      var recommendedIndex = Get.find<RecommendedController>().recommendedProductList.indexOf(_cartList[index].product);
                                       if(page == "recommendedview"){
                                         Get.back();
                                       }else{
@@ -188,22 +189,21 @@ class CartView extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  //controller.addItem(product);
+                  if(!Get.find<UserController>().isLogged){
+                    Get.toNamed(Routes.loginRoute);
+                  }else{
+                    Get.toNamed(Routes.addAddressRoute);
+                  }
                 },
-                child: GestureDetector(
-                  onTap: () {
-                    cartController.cartCheckOut();
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: Dimensions.width20,
-                        vertical: Dimensions.width20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimensions.radius20),
-                      color: AppColors.mainColor,
-                    ),
-                    child: bigText("Check out", color: Colors.white),
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: Dimensions.width20,
+                      vertical: Dimensions.width20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: AppColors.mainColor,
                   ),
+                  child: bigText("Check out", color: Colors.white),
                 ),
               ),
             ],

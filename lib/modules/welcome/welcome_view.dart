@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:eisteintaste/global/constant/dimensions.dart';
 import 'package:eisteintaste/global/constant/route.dart';
+import 'package:eisteintaste/modules/address/controller/address_controller.dart';
+import 'package:eisteintaste/modules/profile/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WelcomeView extends StatefulWidget {
   const WelcomeView({super.key});
@@ -24,7 +26,17 @@ class _WelcomeViewState extends State<WelcomeView> with TickerProviderStateMixin
     animation = new CurvedAnimation(parent: controller, curve: Curves.linear);
     Timer(
       const Duration(seconds:3),
-      ()=>Get.offNamed(Routes.loginRoute),
+      () async {
+        SharedPreferences prefs = Get.find<SharedPreferences>();
+        
+        if(prefs.containsKey('user')) { 
+          Get.offAndToNamed(Routes.homeRoute);
+          Get.find<UserController>().init();
+          await Get.find<AddressController>().getUserAddress();
+        }else{
+          Get.offAndToNamed(Routes.loginRoute);
+        }
+      },
     );
     
   }
@@ -46,12 +58,10 @@ class _WelcomeViewState extends State<WelcomeView> with TickerProviderStateMixin
             )
           ),
           Center(
-            child: Text('Einstein Taste',
-              style: GoogleFonts.amaticSc(
-                fontSize: Dimensions.height45,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFFfa720a)
-            ),)
+            child: Image.asset(
+                'assets/images/textlogo.png', 
+                width: Dimensions.logoSize
+              )
           ),
         ],
       ),

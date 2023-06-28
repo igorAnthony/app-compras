@@ -1,6 +1,4 @@
-import 'package:eisteintaste/global/constant/api_constant.dart';
 import 'package:eisteintaste/global/constant/colors.dart';
-import 'package:eisteintaste/modules/admin/views/admin_view.dart';
 import 'package:eisteintaste/modules/cart/views/cart_history.dart';
 import 'package:eisteintaste/modules/food/views/food_view.dart';
 import 'package:eisteintaste/modules/orders/views/orders_view.dart';
@@ -20,7 +18,6 @@ class _TabbarViewState extends State<TabbarView> {
     OrdersView(),
     CartHistoryView(),
     ProfileView(),
-    AdminPanelView(),
   ];
   void onTabTapped(int index) {
     setState(() {
@@ -50,14 +47,6 @@ class _TabbarViewState extends State<TabbarView> {
         label: 'Profile',
       ),
     ];
-    // if(box.read('admin') == 1){
-    //     bottomNavBarItems.add(
-    //       BottomNavigationBarItem(
-    //         icon: Icon(Icons.admin_panel_settings),
-    //         label: 'Admin',
-    //       ),
-    //   );
-    // }
     
 
     return Scaffold(
@@ -72,5 +61,6 @@ class _TabbarViewState extends State<TabbarView> {
         items: bottomNavBarItems,
       ),
     );
+    
   }
 }

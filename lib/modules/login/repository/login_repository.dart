@@ -1,8 +1,9 @@
 import 'package:eisteintaste/models/api_response.dart';
+import 'package:eisteintaste/modules/login/provider/login_provider.dart';
 import 'package:get/get.dart';
 
 class LoginRepository extends GetxService {
-  final loginProvider;
+  final LoginProvider loginProvider;
 
   LoginRepository({required this.loginProvider});
   

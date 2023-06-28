@@ -27,20 +27,37 @@ InputDecoration kInputDecorationDescription(String label, IconData icon, {Color?
   );
 }
 Material buildMaterialDecoration<T extends Widget>(T child, {double? borderRadius, double? sizeMax, double? heightElevation}) {
-  if (borderRadius == null) {
-    borderRadius = Dimensions.border30;
-  }
   return Material(
-    elevation: heightElevation??Dimensions.height5,
-    borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
-    shadowColor: Color(0xFF1b141e),
+    shadowColor: Colors.white,
+    elevation: heightElevation??Dimensions.height3,
+    borderRadius: BorderRadius.all(Radius.circular(borderRadius ?? Dimensions.radius20)),
+    
     child: Container(
       width: sizeMax ?? double.maxFinite,
       child: child,
+      color: Colors.white,
     ),
   );
 }
-
+BoxDecoration boxDecorationWithBoxShadow({double? borderRadius, double? spreadRadius, double? blurRadius, Color? shadowColor, Color? color}) {
+  return BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(borderRadius ?? Dimensions.radius20),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.2),
+        spreadRadius: spreadRadius ?? 1,
+        blurRadius: blurRadius ?? 4,
+      )
+    ]
+  );
+}
+TextField appTextField(TextEditingController textController, String label, IconData iconData){
+  return TextField(
+    controller: textController,
+    decoration: kInputDecoration(label, iconData),
+  );
+}
 
 TextButton kTextButton(String label, Function onPressed, {Color? backgroundColor, double? fontSize}) {
   return TextButton(

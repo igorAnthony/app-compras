@@ -1,6 +1,9 @@
+import 'package:eisteintaste/global/constant/api_constant.dart';
 import 'package:eisteintaste/models/api_response.dart';
 import 'package:eisteintaste/models/orders_model.dart';
+import 'package:eisteintaste/modules/cart/controller/cart_controller.dart';
 import 'package:eisteintaste/modules/orders/repository/orders_repository.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrdersController extends GetxController {
@@ -8,6 +11,7 @@ class OrdersController extends GetxController {
 
   List<dynamic> _ordersList = [];
   List<dynamic> get ordersList => _ordersList;
+  
   List<dynamic> _ordersListItems = [];
   List<dynamic> get ordersListItems => _ordersListItems;
   double subtotal = 0;
@@ -34,6 +38,46 @@ class OrdersController extends GetxController {
     isLoading.value = false;
     update();
     
+  }
+  Future<void> createOrder() async {
+    ApiResponse response = await ordersRepository.createOrder(int.parse(box.read('user')), subtotal);
+    if(response.error == null){
+      int order_id = response.data as int;
+      if(order_id != 0){
+        await createOrderItems(order_id);
+      }
+    }else{
+      Get.showSnackbar(
+        GetSnackBar(
+          backgroundColor: Colors.red,
+          message: "Order has not been created!",
+          icon: const Icon(Icons.add),
+          duration: const Duration(seconds: 1),
+        ),
+      );
+    }
+  }
+  Future<void> createOrderItems(int order_id) async {
+    ApiResponse response = await ordersRepository.createOrderItems(order_id, Get.find<CartController>().cartList);
+    if(response.error == null){
+      Get.showSnackbar(
+        GetSnackBar(
+          backgroundColor: Colors.green,
+          message: "Your order has been placed successfully!",
+          icon: const Icon(Icons.add),
+          duration: const Duration(seconds: 1),
+        ),
+      );
+    }else{
+      Get.showSnackbar(
+        GetSnackBar(
+          backgroundColor: Colors.red,
+          message: "There was an error when completing the order.",
+          icon: const Icon(Icons.add),
+          duration: const Duration(seconds: 1),
+        ),
+      );
+    }
   }
   void reset(){
     _ordersListItems = [];

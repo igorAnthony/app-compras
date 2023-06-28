@@ -8,9 +8,11 @@ import 'package:eisteintaste/modules/login/controllers/login_controller.dart';
 import 'package:get/get.dart';
 
 class LoginView extends GetView<LoginController> {
+  
+  LoginView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    print(Dimensions.screenWidth);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xFF1b141e),
@@ -72,19 +74,13 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
                     SizedBox(height: Dimensions.height80),
-                    controller.isLoading.value
-                        ? const Center(
-                            child: CircularProgressIndicator(
-                              strokeWidth: 3,
-                            ),
-                          )
-                        : Center(
-                          child: kTextButton(backgroundColor: AppColors.iconColor3,'Sign in', () {
-                            if (controller.formKey.currentState!.validate()) {
-                              controller.login();
-                            }
-                          }),
-                        ),
+                    Center(
+                      child: kTextButton(backgroundColor: AppColors.iconColor3,'Sign in', () {
+                        if (controller.formKey.currentState!.validate()) {
+                          controller.login();
+                        }
+                      }),
+                    ),
                     SizedBox(height: Dimensions.height40),
                     kLoginOrRegisterHint("Not registered yet? ", 'Register here',
                         () {

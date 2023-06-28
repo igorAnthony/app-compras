@@ -5,6 +5,7 @@ import 'package:eisteintaste/models/user.dart';
 import 'package:eisteintaste/global/constant/api_constant.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 class LoginProvider extends GetxService{
   Future<ApiResponse> login(String email, String password) async {
     ApiResponse apiResponse = ApiResponse();
@@ -15,6 +16,12 @@ class LoginProvider extends GetxService{
       switch (response.statusCode) {
         case 200:
           apiResponse.data = User.fromJson(jsonDecode(response.body));
+          if(apiResponse.data != null){
+            User user = apiResponse.data as User;
+            SharedPreferences prefs = Get.find<SharedPreferences>();
+            prefs.setString('user', jsonEncode(user.toJson()));
+            box.write('token', user.token);
+          }
           break;
         case 422:
           final errors = jsonDecode(response.body)['errors'];

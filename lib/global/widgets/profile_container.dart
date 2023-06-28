@@ -1,19 +1,13 @@
+import 'package:eisteintaste/global/constant/decoration.dart';
 import 'package:eisteintaste/global/constant/dimensions.dart';
 import 'package:eisteintaste/global/widgets/text.dart';
 import 'package:flutter/material.dart';
 
-Material profileTextFields(String label, IconData icon, Color colorBackgroundIcon){
-  return Material(
-    elevation: Dimensions.elevationSize4,
-    borderRadius: BorderRadius.all(Radius.circular(Dimensions.border30)),
-    shadowColor: Colors.white,
-    child: Container(
+Container profileTextFields(String label, IconData icon, Color colorBackgroundIcon){
+  return Container(
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(Dimensions.radius20),
-      ),
+      decoration: boxDecorationWithBoxShadow(borderRadius: Dimensions.radius10),
       child: Row(
         children: [
           Container(
@@ -29,6 +23,5 @@ Material profileTextFields(String label, IconData icon, Color colorBackgroundIco
           bigText("${label}", size: Dimensions.font20),
         ],
       ),
-    ),
-  );
+    );
 }

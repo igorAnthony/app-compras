@@ -9,14 +9,16 @@ import '../model/cart_model_history.dart';
 
 class CartController extends GetxController {
   CartRepo cartRepo = Get.find<CartRepo>();
+
+
   List<Cart> _cartList = [];
   List<CartHistory> _historyList = [];
 
   RxInt quant = 0.obs;
   RxDouble totalAmount = 0.0.obs;
 
-  List<dynamic> get cartList => _cartList;
-  List<dynamic> get historyList => _historyList;
+  List<Cart> get cartList => _cartList;
+  List<CartHistory> get historyList => _historyList;
 
   
   @override
@@ -106,6 +108,7 @@ class CartController extends GetxController {
     _cartList = [];
     cartRepo.addToCartList(_cartList);
     calculateCartTotal();
+    
   }
   void addPreviousCartListInCart(int cartHistoryIndex){
     final CartHistory? previousCartList = _historyList[cartHistoryIndex];
