@@ -1,4 +1,5 @@
 import 'package:eisteintaste/global/constant/dimensions.dart';
+import 'package:eisteintaste/global/widgets/text.dart';
 import 'package:flutter/material.dart';
 
 Container appIcon(IconData icon,
@@ -19,6 +20,28 @@ Container appIcon(IconData icon,
       icon,
       color: iconColor ?? Color(0xFF756d54),
       size: iconSize ?? Dimensions.iconSize16,
+    ),
+  );
+}
+
+
+Container appText(String label,
+    {double? size,
+    Color? backgroundColor,
+    Color? textColor,
+    double? textSize}) {
+  var radius = size ?? Dimensions.height40;
+  radius /= 2;
+  return Container(
+    width: size ?? Dimensions.height40,
+    height: size ?? Dimensions.height40,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(radius),
+      color: backgroundColor ?? Color(0xFFfcf4e4),
+    ),
+    child: Center(
+      child: smallText(label, color: textColor ?? Colors.white, size: textSize ?? Dimensions.font14,
+      ),
     ),
   );
 }

@@ -2,7 +2,10 @@ import 'package:eisteintaste/modules/address/binding/address_binding.dart';
 import 'package:eisteintaste/modules/address/views/add_address_view.dart';
 import 'package:eisteintaste/modules/address/views/pick_address_view.dart';
 import 'package:eisteintaste/modules/cart/bindings/cart_binding.dart';
-import 'package:eisteintaste/modules/payment/view/payment_view.dart';
+import 'package:eisteintaste/modules/checkout/binding/checkout_binding.dart';
+import 'package:eisteintaste/modules/checkout/view/checkout_view.dart';
+import 'package:eisteintaste/modules/checkout/view/payment_view.dart';
+import 'package:eisteintaste/modules/checkout/view/review_view.dart';
 import 'package:eisteintaste/modules/tabbar/bindings/tabbar_binding.dart';
 import 'package:eisteintaste/modules/tabbar/tabbar_view.dart';
 import 'package:eisteintaste/modules/cart/views/cart_view.dart';
@@ -39,6 +42,7 @@ class Routes{
   static const addAddressRoute = '/add-address';
   static const paymentRoute = '/payment';
   static const selectAddressRoute = '/select-address';
+  static const checkOutRoute = '/checkout';
 
   static String getWelcomeView()=>'$welcomeRoute';
   static String getPopularFood(int pageId) => '$popularFoodDetailsRoute?pageId=$pageId';
@@ -138,6 +142,11 @@ class Routes{
   GetPage(
     name: paymentRoute, 
     page: () => PaymentView()
-  )
+  ),
+  GetPage(
+    name: checkOutRoute, 
+    page: () => CheckoutView(),
+    binding: CheckOutBinding()
+  ),
 ];
 }
