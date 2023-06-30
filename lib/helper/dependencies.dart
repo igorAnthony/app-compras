@@ -1,6 +1,5 @@
 import 'package:eisteintaste/modules/address/binding/address_binding.dart';
 import 'package:eisteintaste/modules/cart/bindings/cart_binding.dart';
-import 'package:eisteintaste/modules/checkout/binding/checkout_binding.dart';
 import 'package:eisteintaste/modules/login/bindings/login_binding.dart';
 import 'package:eisteintaste/modules/profile/controller/user_controller.dart';
 import 'package:eisteintaste/modules/tabbar/bindings/tabbar_binding.dart';
@@ -22,7 +21,7 @@ class InitBinding implements Bindings {
     OrdersBinding().dependencies();
     AddressBinding().dependencies();
     TabbarBinding().dependencies();
-    CheckOutBinding().dependencies();
+    
   }
 
 }

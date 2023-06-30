@@ -5,7 +5,6 @@ import 'package:eisteintaste/global/widgets/text.dart';
 import 'package:eisteintaste/modules/cart/model/cart_model.dart';
 import 'package:eisteintaste/modules/cart/controller/cart_controller.dart';
 import 'package:eisteintaste/modules/cart/views/cart_empty.dart';
-import 'package:eisteintaste/modules/checkout/view/checkout_view.dart';
 import 'package:eisteintaste/modules/popular/controllers/popular_product_controller.dart';
 import 'package:eisteintaste/modules/profile/controller/user_controller.dart';
 import 'package:eisteintaste/modules/recommended/controllers/recommended_controller.dart';
@@ -193,8 +192,7 @@ class CartView extends StatelessWidget {
                   if(!Get.find<UserController>().isLogged){
                     Get.toNamed(Routes.loginRoute);
                   }else{
-                    //Get.toNamed(Routes.getAddAddressView("cart"));
-                    Get.toNamed(Routes.checkOutRoute);
+                    Get.toNamed(Routes.getAddAddressView("cart"));
                   }
                 },
                 child: Container(

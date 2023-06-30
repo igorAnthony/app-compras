@@ -53,6 +53,13 @@ class AddressController extends GetxController {
   RxString _pickAddress = "".obs;
   RxString get pickAddress => _pickAddress;
 
+  @override
+  void onInit() async {
+    super.onInit();
+    await getUserAddress();
+    setAddressTypeIndex(0);
+  }
+
   void setMapController(GoogleMapController mapController) {
     _mapController = mapController;
   }
@@ -99,11 +106,10 @@ class AddressController extends GetxController {
     return null;
   }
   String placemarkToString(Placemark placemark){
-    print("this: $placemark");
-    String _address = "${placemark.name}, ${placemark.street}";
+    String _address = "${placemark.name}, ${placemark.street}, ${placemark.subLocality}, ${placemark.postalCode}, ${placemark.subAdministrativeArea}";
     return _address;
   }
-  Future<void> getAddressData() async {
+  Future<void> getUserAddress() async {
     ApiResponse response = await _addressRepo.getUserAddress(Get.find<UserController>().user.id!);
     if(response.error == null){
       if(response.data != null){
@@ -119,6 +125,7 @@ class AddressController extends GetxController {
         showMessageTop("Alert", "Problem loading address: ${response.error}");
       }
     }
+    print(_addressList.length);
   }
   void addAddress() async{
     Address address = Address(address: addressTextController.text,
@@ -153,17 +160,23 @@ class AddressController extends GetxController {
   }
   void setAddressTypeIndex(int index){
     _addressTypeIndex = index;
-    update();
-  }
-  void updateControllersAndPosition(int index){
     isMapLoaded.value = false;
+    late CameraPosition cameraPosition;
     if(index < _addressList.length){
       updateControllers(_addressListTemp[_addressTypeIndex].address, _addressListTemp[_addressTypeIndex].contactPersonName, _addressListTemp[_addressTypeIndex].contactPersonNumber);
       _initialPosition = LatLng(double.parse(_addressListTemp[_addressTypeIndex].latitude), double.parse(_addressListTemp[_addressTypeIndex].longitude));
+      cameraPosition = CameraPosition(target: _initialPosition, zoom: 15);
     }else{
       _initialPosition = LatLng(-24.73338696153586, -53.73685178225833);
+      cameraPosition = CameraPosition(target: _initialPosition, zoom: 15);
       updateControllers("", "", "");
     }
+    
+    update();
+  }
+
+  void reset(){
+
   }
 
   void updateControllers(String address, String name, String number){
