@@ -33,8 +33,8 @@ class Address{
   String get addressType => _addressType;
   String get contactPersonName => _contactPersonName;
   String get contactPersonNumber => _contactPersonNumber;
-  String? get latitude => _latitude;
-  String? get longitude => _longitude;
+  String get latitude => _latitude;
+  String get longitude => _longitude;
   int get user_id => _user_id;
   int? get id => _id;
   
@@ -50,7 +50,12 @@ class Address{
   set contactPersonNumber(String contactPersonNumber){
     _contactPersonNumber = contactPersonNumber;
   }
-
+  set latitude(String latitude){
+    _latitude = latitude;
+  }
+  set longitude(String longitude){
+    _longitude = longitude;
+  }
   Address.fromJson(Map<String, dynamic> json){
     _id = json['id'];
     _user_id = json['user_id'];

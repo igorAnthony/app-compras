@@ -10,7 +10,8 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class AddAddressView extends StatefulWidget {
-  const AddAddressView({super.key});
+  final String pageName;  
+  const AddAddressView({super.key, required this.pageName});
 
   @override
   State<AddAddressView> createState() => _AddAddressViewState();
@@ -33,6 +34,7 @@ class _AddAddressViewState extends State<AddAddressView> {
       Get.offAllNamed(Routes.loginRoute);
     }
     AddressController addressController = Get.find<AddressController>();
+    addressController.addressListTemp = addressController.addressList;
     if(Get.find<AddressController>().addressList.isNotEmpty){
       _cameraPosition = CameraPosition(
         target: LatLng(
@@ -51,7 +53,7 @@ class _AddAddressViewState extends State<AddAddressView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Address", style: TextStyle(
+        title: Text(widget.pageName == "cart" ? "Choose address":"Add Address", style: TextStyle(
           color: Colors.white,
           
         )),
@@ -194,16 +196,20 @@ class _AddAddressViewState extends State<AddAddressView> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      if(addressController.isUpdateAddressData){
-                        addressController.updateAddress();
-                      }else{ 
-                        addressController.addAddress();
+                      if(widget.pageName == "cart"){
+                        Get.toNamed(Routes.paymentRoute);
+                      }else{
+                        if(addressController.isUpdateAddressData){
+                          addressController.updateAddress();
+                        }else{ 
+                          addressController.addAddress();
+                        }
+                        Get.back();
                       }
-                      Get.back();
                     },
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                      child:  bigText("Save address",  size: Dimensions.font24, color: Colors.white),
+                      padding: EdgeInsets.symmetric(vertical: Dimensions.height15, horizontal: Dimensions.width40),
+                      child:  bigText(widget.pageName == "cart" ? "Select" : "Save this address",  size: Dimensions.font24, color: Colors.white),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(Dimensions.radius20),
                         color: AppColors.mainColor,

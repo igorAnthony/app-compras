@@ -14,6 +14,9 @@ class AddressController extends GetxController {
   
   List<dynamic> _addressList = [];
   List<dynamic> get addressList => _addressList;
+  List<dynamic> _addressListTemp = [];
+  List<dynamic> get addressListTemp => _addressListTemp;
+  void set addressListTemp(List<dynamic> value) => _addressListTemp = value;
 
   List<String> _addressTypeList = ["Home", "Office", "Other"];
   List<String> get addressTypeList => _addressTypeList;
@@ -28,7 +31,7 @@ class AddressController extends GetxController {
 
   late Position _position;
   Position get position => _position;
-  late Position _pickPosition;
+
   Placemark _placemark = Placemark();
   Placemark get placemark => _placemark;
   Placemark _pickPlacemark = Placemark();
@@ -43,8 +46,12 @@ class AddressController extends GetxController {
 
   final TextEditingController contactNameTextController = TextEditingController();
   final TextEditingController contactNumberTextController = TextEditingController();
+  
   LatLng _initialPosition = LatLng(-24.73338696153586, -53.73685178225833);
   LatLng get initialPosition => _initialPosition;
+
+  RxString _pickAddress = "".obs;
+  RxString get pickAddress => _pickAddress;
 
   @override
   void onInit() async {
@@ -56,35 +63,31 @@ class AddressController extends GetxController {
   void setMapController(GoogleMapController mapController) {
     _mapController = mapController;
   }
-  void updatePosition(CameraPosition position, bool isFromAddress) async {
+  void updatePosition(CameraPosition cameraPosition, bool isFromAddress) async {
     if(_isUpdateAddressData){
 
       try{
-        if(isFromAddress){
-          _position = Position(
-            latitude: position.target.latitude,
-            longitude: position.target.longitude,
-            timestamp: DateTime.now(),
-            heading: 1, accuracy: 1,altitude: 1,speed: 1,speedAccuracy: 1
-          );
-        }else{
-          _pickPosition = Position(
-            latitude: position.target.latitude,
-            longitude: position.target.longitude,
-            timestamp: DateTime.now(),
-            heading: 1, accuracy: 1,altitude: 1,speed: 1,speedAccuracy: 1
-          );
-        }
+        _position = Position(
+          latitude: cameraPosition.target.latitude,
+          longitude: cameraPosition.target.longitude,
+          timestamp: DateTime.now(),
+          heading: 1, accuracy: 1,altitude: 1,speed: 1,speedAccuracy: 1
+        );
+        _addressListTemp[addressTypeIndex].latitude = cameraPosition.target.latitude.toString();
+        _addressListTemp[addressTypeIndex].longitude = cameraPosition.target.longitude.toString();
         if(!_isChangeAddress){
-          Placemark? _address = await getAddressFromGeoCode(LatLng(position.target.latitude, position.target.longitude));
+          Placemark? _address = await getAddressFromGeoCode(LatLng(cameraPosition.target.latitude, cameraPosition.target.longitude));
           if(_address != null){
             isFromAddress ? _placemark = _address : _pickPlacemark = _address;
+            addressTextController.text = placemarkToString(_address);
+            _pickAddress.value = placemarkToString(_address);
+            _addressListTemp[addressTypeIndex].address = placemarkToString(_address);
           }else{
             isFromAddress ? _placemark = Placemark() : _pickPlacemark = Placemark();
           }
         }
-        isMapLoaded.value = true;
         update();
+        isMapLoaded.value = true;
       }catch(e){
         print(e);
       }
@@ -103,7 +106,7 @@ class AddressController extends GetxController {
     return null;
   }
   String placemarkToString(Placemark placemark){
-    String _address = "${placemark.name}, ${placemark.street}, ${placemark.subLocality}, ${placemark.postalCode}, ${placemark.subAdministrativeArea} - ${placemark.administrativeArea}";
+    String _address = "${placemark.name}, ${placemark.street}, ${placemark.subLocality}, ${placemark.postalCode}, ${placemark.subAdministrativeArea}";
     return _address;
   }
   Future<void> getUserAddress() async {
@@ -160,15 +163,15 @@ class AddressController extends GetxController {
     isMapLoaded.value = false;
     late CameraPosition cameraPosition;
     if(index < _addressList.length){
-      updateControllers(_addressList[_addressTypeIndex].address, _addressList[_addressTypeIndex].contactPersonName, _addressList[_addressTypeIndex].contactPersonNumber);
-      _initialPosition = LatLng(double.parse(_addressList[_addressTypeIndex].latitude), double.parse(_addressList[_addressTypeIndex].longitude));
+      updateControllers(_addressListTemp[_addressTypeIndex].address, _addressListTemp[_addressTypeIndex].contactPersonName, _addressListTemp[_addressTypeIndex].contactPersonNumber);
+      _initialPosition = LatLng(double.parse(_addressListTemp[_addressTypeIndex].latitude), double.parse(_addressListTemp[_addressTypeIndex].longitude));
       cameraPosition = CameraPosition(target: _initialPosition, zoom: 15);
     }else{
       _initialPosition = LatLng(-24.73338696153586, -53.73685178225833);
       cameraPosition = CameraPosition(target: _initialPosition, zoom: 15);
       updateControllers("", "", "");
     }
-    updatePosition(cameraPosition, false);
+    
     update();
   }
 

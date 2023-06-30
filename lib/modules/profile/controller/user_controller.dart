@@ -32,7 +32,7 @@ class UserController extends GetxController {
       id: jsonMap['id'],
       name: jsonMap['name'],
       email: jsonMap['email'],
-      phone_number: jsonMap['phone_number'],
+      phoneNumber: jsonMap['phone_number'],
       token: jsonMap['token'],
     );
     _user = storageUser;

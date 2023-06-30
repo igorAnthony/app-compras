@@ -192,7 +192,7 @@ class CartView extends StatelessWidget {
                   if(!Get.find<UserController>().isLogged){
                     Get.toNamed(Routes.loginRoute);
                   }else{
-                    Get.toNamed(Routes.addAddressRoute);
+                    Get.toNamed(Routes.getAddAddressView("cart"));
                   }
                 },
                 child: Container(

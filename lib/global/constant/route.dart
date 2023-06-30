@@ -2,6 +2,7 @@ import 'package:eisteintaste/modules/address/binding/address_binding.dart';
 import 'package:eisteintaste/modules/address/views/add_address_view.dart';
 import 'package:eisteintaste/modules/address/views/pick_address_view.dart';
 import 'package:eisteintaste/modules/cart/bindings/cart_binding.dart';
+import 'package:eisteintaste/modules/payment/view/payment_view.dart';
 import 'package:eisteintaste/modules/tabbar/bindings/tabbar_binding.dart';
 import 'package:eisteintaste/modules/tabbar/tabbar_view.dart';
 import 'package:eisteintaste/modules/cart/views/cart_view.dart';
@@ -36,13 +37,15 @@ class Routes{
   static const recommendedFoodDetailsRoute = '/recommended';
   static const pickAddressMapRoute = '/pick-address';
   static const addAddressRoute = '/add-address';
+  static const paymentRoute = '/payment';
+  static const selectAddressRoute = '/select-address';
 
   static String getWelcomeView()=>'$welcomeRoute';
   static String getPopularFood(int pageId) => '$popularFoodDetailsRoute?pageId=$pageId';
   static String getRecommendedFood(int pageId) => '$recommendedFoodDetailsRoute?pageId=$pageId';
   static String getCart(String page) => '$cartRoute?page=$page';
   static String getPickAddressMapView()=>'$pickAddressMapRoute';
-  static String getAddAddressView()=>'$addAddressRoute';
+  static String getAddAddressView(String page)=>'$addAddressRoute?page=$page';
 
 
   static List<GetPage> getPages = [
@@ -126,8 +129,15 @@ class Routes{
   ),
   GetPage(
     name: addAddressRoute, 
-    page: () => AddAddressView(),
+    page: () {
+      var page = Get.parameters['page'];
+      return AddAddressView(pageName: page!);
+    },
     binding: AddressBinding(),
+  ),
+  GetPage(
+    name: paymentRoute, 
+    page: () => PaymentView()
   )
 ];
 }
