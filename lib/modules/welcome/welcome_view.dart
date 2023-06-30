@@ -32,7 +32,6 @@ class _WelcomeViewState extends State<WelcomeView> with TickerProviderStateMixin
         if(prefs.containsKey('user')) { 
           Get.offAndToNamed(Routes.homeRoute);
           Get.find<UserController>().init();
-          await Get.find<AddressController>().getUserAddress();
         }else{
           Get.offAndToNamed(Routes.loginRoute);
         }

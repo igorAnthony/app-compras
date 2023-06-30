@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:eisteintaste/global/constant/api_constant.dart';
+import 'package:eisteintaste/models/address_model.dart';
 import 'package:eisteintaste/models/user.dart';
+import 'package:eisteintaste/modules/address/controller/address_controller.dart';
 import 'package:eisteintaste/modules/cart/controller/cart_controller.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,7 +21,7 @@ class UserController extends GetxController {
     user = User();
     update();
   }
-  void init() {
+  void init() async {
     SharedPreferences prefs = Get.find<SharedPreferences>();
 
     Get.find<CartController>().getCartData();
@@ -37,6 +39,7 @@ class UserController extends GetxController {
     );
     _user = storageUser;
     box.write('token', Get.find<UserController>().user.token!);
+    await Get.find<AddressController>().getAddressData();
     update();
   }
 }

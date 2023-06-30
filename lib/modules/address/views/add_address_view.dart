@@ -4,6 +4,7 @@ import 'package:eisteintaste/global/constant/dimensions.dart';
 import 'package:eisteintaste/global/constant/route.dart';
 import 'package:eisteintaste/global/widgets/text.dart';
 import 'package:eisteintaste/modules/address/controller/address_controller.dart';
+import 'package:eisteintaste/modules/checkout/controller/checkout_controller.dart';
 import 'package:eisteintaste/modules/profile/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -52,13 +53,26 @@ class _AddAddressViewState extends State<AddAddressView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: widget.pageName != "cart" ? AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
         title: Text(widget.pageName == "cart" ? "Choose address":"Add Address", style: TextStyle(
           color: Colors.white,
-          
+          fontSize: Dimensions.font18
         )),
         backgroundColor: AppColors.mainColor,
-      ),
+        leading: Container(
+          padding: EdgeInsets.only(left: Dimensions.width10),
+          child: GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child: Center(
+              child: smallText("Cancel", color:Colors.white, size: Dimensions.font16)
+            ),
+          )
+        )
+      ) : null,
       backgroundColor: Colors.white,
       body: GetBuilder<AddressController>(
         init: Get.find<AddressController>(),
@@ -108,41 +122,42 @@ class _AddAddressViewState extends State<AddAddressView> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                   height:Dimensions.height45, child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: addressController.addressTypeList.length,
-                  itemBuilder: (context, index){
-                  return Padding(
-                    padding: EdgeInsets.only(right: Dimensions.width10),
-                    child: GestureDetector(
-                      onTap: () {
-                        addressController.setAddressTypeIndex(index);
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height10),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 1,
-                              blurRadius: 4,
-                            )
-                          ]
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              index == 0 ? Icons.home : index == 1 ? Icons.work : Icons.location_on,
-                              color: addressController.addressTypeIndex==index ? AppColors.mainColor : Theme.of(context).disabledColor
-                            ),
-                          ],
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: addressController.addressTypeList.length,
+                    itemBuilder: (context, index){
+                    return Padding(
+                      padding: EdgeInsets.only(right: Dimensions.width10),
+                      child: GestureDetector(
+                        onTap: () {
+                          addressController.setAddressTypeIndex(index);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.2),
+                                spreadRadius: 1,
+                                blurRadius: 4,
+                              )
+                            ]
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(
+                                index == 0 ? Icons.home : index == 1 ? Icons.work : Icons.location_on,
+                                color: addressController.addressTypeIndex==index ? AppColors.mainColor : Theme.of(context).disabledColor
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                })),
+                    );
+                  })
+                ),
                 SizedBox(height: Dimensions.height20),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
@@ -197,7 +212,7 @@ class _AddAddressViewState extends State<AddAddressView> {
                   GestureDetector(
                     onTap: () {
                       if(widget.pageName == "cart"){
-                        Get.toNamed(Routes.paymentRoute);
+                        Get.find<CheckOutController>().setPagesIndex(Get.find<CheckOutController>().checkOutIndex + 1);
                       }else{
                         if(addressController.isUpdateAddressData){
                           addressController.updateAddress();
