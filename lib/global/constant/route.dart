@@ -1,3 +1,5 @@
+import 'package:eisteintaste/helper/dependencies.dart';
+import 'package:eisteintaste/models/user.dart';
 import 'package:eisteintaste/modules/address/binding/address_binding.dart';
 import 'package:eisteintaste/modules/address/views/add_address_view.dart';
 import 'package:eisteintaste/modules/address/views/pick_address_view.dart';
@@ -6,6 +8,8 @@ import 'package:eisteintaste/modules/checkout/binding/checkout_binding.dart';
 import 'package:eisteintaste/modules/checkout/view/checkout_view.dart';
 import 'package:eisteintaste/modules/checkout/view/payment_view.dart';
 import 'package:eisteintaste/modules/checkout/view/review_view.dart';
+import 'package:eisteintaste/modules/profile/binding/user_binding.dart';
+import 'package:eisteintaste/modules/search/view/search_view.dart';
 import 'package:eisteintaste/modules/tabbar/bindings/tabbar_binding.dart';
 import 'package:eisteintaste/modules/tabbar/tabbar_view.dart';
 import 'package:eisteintaste/modules/cart/views/cart_view.dart';
@@ -43,6 +47,7 @@ class Routes{
   static const paymentRoute = '/payment';
   static const selectAddressRoute = '/select-address';
   static const checkOutRoute = '/checkout';
+  static const searchRoute = '/search';
 
   static String getWelcomeView()=>'$welcomeRoute';
   static String getPopularFood(int pageId) => '$popularFoodDetailsRoute?pageId=$pageId';
@@ -57,6 +62,7 @@ class Routes{
   GetPage(
     name: welcomeRoute,
     page: () => WelcomeView(),
+    transition: Transition.rightToLeft,
   ),
   GetPage(
     name: loginRoute,
@@ -72,7 +78,16 @@ class Routes{
   GetPage(
     name: homeRoute,
     page: () => TabbarView(),
-    binding: TabbarBinding()
+    bindings: [
+      TabbarBinding(),
+      PopularBinding(),
+      RecommendedBinding(),
+      CartBinding(),
+      OrdersBinding(),
+      AddressBinding(),
+      TabbarBinding(),
+      CheckOutBinding()
+    ]
   ),
   GetPage(
     name: foodPageRoute,
@@ -147,6 +162,10 @@ class Routes{
     name: checkOutRoute, 
     page: () => CheckoutView(),
     binding: CheckOutBinding()
+  ),
+  GetPage(
+    name: searchRoute, 
+    page: () => SearchView(),
   ),
 ];
 }

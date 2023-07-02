@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:eisteintaste/global/constant/dimensions.dart';
 import 'package:eisteintaste/global/constant/route.dart';
-import 'package:eisteintaste/modules/address/controller/address_controller.dart';
 import 'package:eisteintaste/modules/profile/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:eisteintaste/helper/dependencies.dart' as dep;
 
 class WelcomeView extends StatefulWidget {
   const WelcomeView({super.key});
@@ -30,10 +30,10 @@ class _WelcomeViewState extends State<WelcomeView> with TickerProviderStateMixin
         SharedPreferences prefs = Get.find<SharedPreferences>();
         
         if(prefs.containsKey('user')) { 
-          Get.offAndToNamed(Routes.homeRoute);
+          Get.offAllNamed(Routes.homeRoute);
           Get.find<UserController>().init();
         }else{
-          Get.offAndToNamed(Routes.loginRoute);
+          Get.offAllNamed(Routes.loginRoute); 
         }
       },
     );

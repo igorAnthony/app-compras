@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:eisteintaste/global/constant/api_constant.dart';
+import 'package:eisteintaste/global/constant/route.dart';
 import 'package:eisteintaste/models/address_model.dart';
 import 'package:eisteintaste/models/user.dart';
 import 'package:eisteintaste/modules/address/controller/address_controller.dart';
@@ -20,13 +21,15 @@ class UserController extends GetxController {
     isLogged = false;
     user = User();
     update();
+    Get.offNamed(Routes.welcomeRoute);
+    Get.lazyPut<UserController>(() => UserController());
   }
   void init() async {
     SharedPreferences prefs = Get.find<SharedPreferences>();
 
     Get.find<CartController>().getCartData();
     Get.find<CartController>().getCartHistoryData();
-    Get.find<UserController>().isLogged = true;
+    
     String userString = prefs.getString('user')!;
     Map<String, dynamic> jsonMap = jsonDecode(userString);
 
@@ -41,5 +44,6 @@ class UserController extends GetxController {
     box.write('token', Get.find<UserController>().user.token!);
     await Get.find<AddressController>().getAddressData();
     update();
+    isLogged = true;
   }
 }

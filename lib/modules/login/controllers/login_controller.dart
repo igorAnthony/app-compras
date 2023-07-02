@@ -1,5 +1,6 @@
 import 'package:eisteintaste/global/constant/route.dart';
 import 'package:eisteintaste/modules/login/repository/login_repository.dart';
+import 'package:eisteintaste/modules/profile/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:eisteintaste/models/user.dart';
@@ -19,8 +20,6 @@ class LoginController extends GetxController {
       
       final response = await loginRepo.loginUser(emailController.text, passwordController.text);
       if(response.error == null){
-        Get.offAndToNamed(Routes.homeRoute);
-
         Get.showSnackbar(
           GetSnackBar(
             message: "The user has successfully logged in.",
@@ -28,7 +27,8 @@ class LoginController extends GetxController {
             duration: const Duration(seconds: 1),
           ),
         );
-        
+        Get.offAndToNamed(Routes.homeRoute);
+        Get.find<UserController>().init();
       }  
       else{
         Get.snackbar(

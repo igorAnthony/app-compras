@@ -7,7 +7,7 @@ class CartBinding implements Bindings {
   @override
   void dependencies() {
     final SharedPreferences sharedPreferences = Get.find(); 
-    Get.lazyPut<CartRepo>(() => CartRepo(sharedPreferences: sharedPreferences));
-    Get.lazyPut<CartController>(() => CartController());
+    Get.lazyPut<CartRepo>(() => CartRepo(sharedPreferences: sharedPreferences), fenix: true);
+    Get.lazyPut<CartController>(() => CartController(), fenix: true);
   }  
 }

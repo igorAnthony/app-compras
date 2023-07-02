@@ -6,6 +6,7 @@ import 'package:eisteintaste/global/widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:eisteintaste/modules/login/controllers/login_controller.dart';
 import 'package:get/get.dart';
+import 'package:eisteintaste/helper/dependencies.dart' as dep;
 
 class LoginView extends GetView<LoginController> {
   
@@ -13,6 +14,7 @@ class LoginView extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
+    
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xFF1b141e),

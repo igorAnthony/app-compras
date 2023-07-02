@@ -8,8 +8,8 @@ class AddressBinding implements Bindings {
   
   @override
   void dependencies(){
-    Get.lazyPut<AddressProvider>(()=>AddressProvider());
-    Get.lazyPut<AddressRepository>(()=>AddressRepository(addressProvider: Get.find<AddressProvider>()));
-    Get.lazyPut<AddressController>(()=>AddressController());
+    Get.put<AddressProvider>(AddressProvider(), permanent: true);
+    Get.put<AddressRepository>(AddressRepository(addressProvider: Get.find<AddressProvider>()), permanent: true);
+    Get.lazyPut<AddressController>(()=>AddressController(), fenix: true);
   }
 }
