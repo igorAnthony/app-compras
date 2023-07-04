@@ -7,8 +7,8 @@ class OrdersBinding implements Bindings {
   
   @override
   void dependencies(){
-    Get.lazyPut<OrdersProvider>(()=>OrdersProvider());
-    Get.lazyPut<OrdersRepository>(()=>OrdersRepository(ordersProvider: Get.find<OrdersProvider>()));
-    Get.lazyPut<OrdersController>(()=>OrdersController());
+    Get.lazyPut<OrdersProvider>(()=>OrdersProvider(), fenix: true);
+    Get.lazyPut<OrdersRepository>(()=>OrdersRepository(ordersProvider: Get.find<OrdersProvider>()), fenix: true);
+    Get.lazyPut<OrdersController>(()=>OrdersController(), fenix: true);
   }
 }

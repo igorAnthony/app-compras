@@ -7,8 +7,8 @@ class RecommendedBinding implements Bindings {
   
   @override
   void dependencies(){
-    Get.lazyPut<RecommendedProvider>(()=>RecommendedProvider());
-    Get.lazyPut<RecommendedRepository>(()=>RecommendedRepository(recommendedProvider: Get.find<RecommendedProvider>()));
-    Get.lazyPut<RecommendedController>(()=>RecommendedController());
+    Get.lazyPut<RecommendedProvider>(()=>RecommendedProvider(), fenix: true);
+    Get.lazyPut<RecommendedRepository>(()=>RecommendedRepository(recommendedProvider: Get.find<RecommendedProvider>()), fenix: true);
+    Get.lazyPut<RecommendedController>(()=>RecommendedController(), fenix: true);
   }
 }

@@ -5,8 +5,6 @@ class Products {
   int? id_category;
   String? image;
   double? price;
-  int? stars;
-  String? location;
   String? visibility;
 
   Products({
@@ -16,8 +14,6 @@ class Products {
     this.id_category,
     this.image,
     this.price,
-    this.stars,
-    this.location,
     this.visibility,
   });
 
@@ -28,8 +24,6 @@ class Products {
     id_category = json['id_category'];
     image = json['image'];
     price = double.parse(json['price'].toString());
-    stars = json['stars'];
-    location = json['location'];
     visibility = json['visibility'];
   }
 
@@ -41,8 +35,6 @@ class Products {
       'id_category': id_category,
       'image': image,
       'price': price,
-      'stars': stars,
-      'location': location,
       'visibility': visibility,
     };
   }

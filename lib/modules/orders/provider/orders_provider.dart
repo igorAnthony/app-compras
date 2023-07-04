@@ -70,7 +70,7 @@ class OrdersProvider{
     }
     return apiResponse;
   }
-  Future<ApiResponse> createOrder(int customerId, double totalAmount) async {
+  Future<ApiResponse> createOrder(int customerId, double totalAmount, String? payment_method, int address_id) async {
     ApiResponse apiResponse = ApiResponse();
 
     try {
@@ -83,6 +83,8 @@ class OrdersProvider{
       final body = jsonEncode({
         'customer_id': customerId,
         'total_amount': totalAmount,
+        'payment_method': payment_method,
+        'address_id': address_id,
       });
 
       final response = await http.post(url, headers: headers, body: body);

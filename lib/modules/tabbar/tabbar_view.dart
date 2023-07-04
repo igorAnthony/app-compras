@@ -3,6 +3,7 @@ import 'package:eisteintaste/modules/cart/views/cart_history.dart';
 import 'package:eisteintaste/modules/food/views/food_view.dart';
 import 'package:eisteintaste/modules/orders/views/orders_view.dart';
 import 'package:eisteintaste/modules/profile/views/profile_view.dart';
+import 'package:eisteintaste/modules/search/view/search_view.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,6 +16,7 @@ class _TabbarViewState extends State<TabbarView> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     FoodView(),
+    SearchView(),
     OrdersView(),
     CartHistoryView(),
     ProfileView(),
@@ -33,6 +35,10 @@ class _TabbarViewState extends State<TabbarView> {
       BottomNavigationBarItem(
         icon: Icon(Icons.home),
         label: 'Home',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.search),
+        label: 'Search',
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.description),

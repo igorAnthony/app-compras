@@ -58,25 +58,26 @@ class _PaymentViewState extends State<PaymentView> {
           ),
           bottomNavigationBar: GetBuilder<CheckOutController>(
             builder: (controller) {
-              return Container(
-                margin: EdgeInsets.symmetric(vertical: Dimensions.height10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        controller.setPagesIndex(controller.checkOutIndex + 1);
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: Dimensions.height15, horizontal: Dimensions.width40),
-                        child:  bigText("Confirm",  size: Dimensions.font24, color: Colors.white),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(Dimensions.radius20),
-                          color: AppColors.mainColor,
-                        ),
-                      ),
-                    ),
-                  ],
+              return GestureDetector(
+                onTap: () {
+                  controller.setPagesIndex(controller.checkOutIndex + 1);
+                },
+                child: Container(
+                  margin: EdgeInsets.symmetric(vertical: Dimensions.height10, horizontal: Dimensions.width10),
+                  width: double.maxFinite,
+                  height: Dimensions.height45,
+                  decoration: BoxDecoration(
+                    color: AppColors.mainColor,
+                    borderRadius: BorderRadius.circular(Dimensions.radius10)
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      bigText("Select and continue",  size: Dimensions.font20, color: Colors.white),
+                      SizedBox(width: Dimensions.width5),
+                      Icon(Icons.arrow_forward_ios, size: Dimensions.iconSize16, color: Colors.white)
+                    ],
+                  ),
                 ),
               );
           },

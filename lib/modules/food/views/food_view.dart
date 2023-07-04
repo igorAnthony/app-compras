@@ -47,26 +47,26 @@ class _FoodViewState extends State<FoodView> {
                           )
                         ],
                       ),
-                      Center(
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.toNamed(Routes.searchRoute);
-                          },
-                          child: Container(
-                            height: Dimensions.height45,
-                            width: Dimensions.height45,
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(Dimensions.width15),
-                                color: AppColors.mainColor),
-                            child: Icon(
-                              Icons.search,
-                              color: Colors.white,
-                              size: Dimensions.iconSize24,
-                            ),
-                          ),
-                        ),
-                      )
+                      // Center(
+                      //   child: GestureDetector(
+                      //     onTap: () {
+                      //       Get.toNamed(Routes.searchRoute);
+                      //     },
+                      //     child: Container(
+                      //       height: Dimensions.height45,
+                      //       width: Dimensions.height45,
+                      //       decoration: BoxDecoration(
+                      //           borderRadius:
+                      //               BorderRadius.circular(Dimensions.width15),
+                      //           color: AppColors.mainColor),
+                      //       child: Icon(
+                      //         Icons.search,
+                      //         color: Colors.white,
+                      //         size: Dimensions.iconSize24,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // )
                     ],
                   ),
                 ),

@@ -6,6 +6,7 @@ import 'package:eisteintaste/models/address_model.dart';
 import 'package:eisteintaste/models/user.dart';
 import 'package:eisteintaste/modules/address/controller/address_controller.dart';
 import 'package:eisteintaste/modules/cart/controller/cart_controller.dart';
+import 'package:eisteintaste/modules/food/controller/product_controller.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,7 +30,7 @@ class UserController extends GetxController {
 
     Get.find<CartController>().getCartData();
     Get.find<CartController>().getCartHistoryData();
-    
+    Get.find<ProductController>().getProductData();
     String userString = prefs.getString('user')!;
     Map<String, dynamic> jsonMap = jsonDecode(userString);
 

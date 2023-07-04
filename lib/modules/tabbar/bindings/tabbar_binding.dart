@@ -5,6 +5,6 @@ class TabbarBinding implements Bindings {
   
   @override
   void dependencies(){
-    Get.lazyPut<TabbarController>(()=>TabbarController());
+    Get.lazyPut<TabbarController>(()=>TabbarController(), fenix: true);
   }
 }

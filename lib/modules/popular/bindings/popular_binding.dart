@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 class PopularBinding implements Bindings {
   @override
   void dependencies(){
-    Get.lazyPut<PopularProvider>(()=>PopularProvider());
-    Get.lazyPut<PopularRepository>(()=>PopularRepository(popularProvider: Get.find<PopularProvider>()));
-    Get.lazyPut<PopularController>(()=>PopularController());
+    Get.lazyPut<PopularProvider>(()=>PopularProvider(), fenix: true);
+    Get.lazyPut<PopularRepository>(()=>PopularRepository(popularProvider: Get.find<PopularProvider>()), fenix: true);
+    Get.lazyPut<PopularController>(()=>PopularController(), fenix: true);
   }
 }

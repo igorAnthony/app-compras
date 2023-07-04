@@ -195,42 +195,40 @@ class _AddAddressViewState extends State<AddAddressView> {
       ),
       bottomNavigationBar: GetBuilder<AddressController>(
         builder: (addressController) {
-          return Container(
-            height: Dimensions.height110,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Dimensions.radius20),
-                topRight: Radius.circular(Dimensions.radius20),
-              ),
-            ),
+          return GestureDetector(
+            onTap:() {
+              if(widget.pageName == "cart"){
+                Get.find<CheckOutController>().setPagesIndex(Get.find<CheckOutController>().checkOutIndex + 1);
+              }else{
+                if(addressController.isUpdateAddressData){
+                  addressController.updateAddress();
+                }else{ 
+                  addressController.addAddress();
+                }
+                Get.back();
+              }
+            },
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: Dimensions.height20),
+              margin: EdgeInsets.symmetric(horizontal: Dimensions.height20, vertical: Dimensions.height10),
+              height: Dimensions.height45,
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                color: AppColors.mainColor,
+                borderRadius: BorderRadius.circular(Dimensions.radius10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 1,
+                    blurRadius: 4,
+                  )
+                ]
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      if(widget.pageName == "cart"){
-                        Get.find<CheckOutController>().setPagesIndex(Get.find<CheckOutController>().checkOutIndex + 1);
-                      }else{
-                        if(addressController.isUpdateAddressData){
-                          addressController.updateAddress();
-                        }else{ 
-                          addressController.addAddress();
-                        }
-                        Get.back();
-                      }
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: Dimensions.height15, horizontal: Dimensions.width40),
-                      child:  bigText(widget.pageName == "cart" ? "Select" : "Save this address",  size: Dimensions.font24, color: Colors.white),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Dimensions.radius20),
-                        color: AppColors.mainColor,
-                      ),
-                    ),
-                  ),
+                  bigText(widget.pageName == "cart" ? "Select and continue" : "Save this address",  size: Dimensions.font20, color: Colors.white),
+                  SizedBox(width: Dimensions.width5),
+                  Icon(Icons.arrow_forward_ios, size: Dimensions.iconSize16, color: Colors.white)
                 ],
               ),
             ),

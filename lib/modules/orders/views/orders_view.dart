@@ -22,6 +22,7 @@ class _OrdersViewState extends State<OrdersView> {
       body: GetBuilder<OrdersController>(
         init: ordersController,
         builder: (ordersController) {
+        print(ordersController.ordersList);
         return ListView.builder(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,

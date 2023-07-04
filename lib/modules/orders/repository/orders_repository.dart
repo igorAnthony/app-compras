@@ -14,8 +14,8 @@ class OrdersRepository extends GetxService {
   Future<ApiResponse> getItemsOfOrders(int orders_id) async {
     return await ordersProvider.getItemsOfOrders(orders_id);
   }
-  Future<ApiResponse> createOrder(int customerId, double totalPrice) async {
-    return await ordersProvider.createOrder(customerId, totalPrice);
+  Future<ApiResponse> createOrder(int customerId, double totalPrice, String? paymentMethod, int address_id) async {
+    return await ordersProvider.createOrder(customerId, totalPrice, paymentMethod, address_id);
   }
   Future<ApiResponse> createOrderItems(int orders_id, List<Cart> items) async {
     return await ordersProvider.createOrderItems(orders_id, items);

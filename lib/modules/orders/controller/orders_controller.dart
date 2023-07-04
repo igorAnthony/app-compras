@@ -1,7 +1,9 @@
 import 'package:eisteintaste/global/constant/api_constant.dart';
 import 'package:eisteintaste/models/api_response.dart';
 import 'package:eisteintaste/models/orders_model.dart';
+import 'package:eisteintaste/modules/address/controller/address_controller.dart';
 import 'package:eisteintaste/modules/cart/controller/cart_controller.dart';
+import 'package:eisteintaste/modules/checkout/controller/checkout_controller.dart';
 import 'package:eisteintaste/modules/orders/repository/orders_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,7 +42,9 @@ class OrdersController extends GetxController {
     
   }
   Future<void> createOrder() async {
-    ApiResponse response = await ordersRepository.createOrder(int.parse(box.read('user')), subtotal);
+    String paymentMethod = Get.find<CheckOutController>().paymentOptionsNames[Get.find<CheckOutController>().paymentOptionsIndex.value];
+    int address_id = Get.find<AddressController>().addressList[Get.find<AddressController>().addressTypeIndex].id!;
+    ApiResponse response = await ordersRepository.createOrder(int.parse(box.read('user')), subtotal, paymentMethod, address_id);
     if(response.error == null){
       int order_id = response.data as int;
       if(order_id != 0){

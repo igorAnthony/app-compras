@@ -285,18 +285,18 @@ class _ReviewViewState extends State<ReviewView> {
                     Get.find<CartController>().cartCheckOut();
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: Dimensions.height15),
+                    height: Dimensions.height45,
                     width: double.maxFinite,
                     child:  Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        bigText("Submit Order",  size: Dimensions.font20, color: Colors.white),
+                        bigText("Submit and place the order",  size: Dimensions.font20, color: Colors.white),
                         SizedBox(width: Dimensions.width5),
                         Icon(Icons.arrow_forward_ios, size: Dimensions.iconSize16, color: Colors.white)
                       ],
                     ),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                      borderRadius: BorderRadius.circular(Dimensions.radius10),
                       color: AppColors.mainColor,
                     ),
                   ),

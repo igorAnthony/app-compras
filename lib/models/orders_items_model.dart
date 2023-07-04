@@ -4,8 +4,8 @@ class OrdersItems {
   int? productId;
   int? quantity;
   String? totalPrice;
-  Null createdAt;
-  Null updatedAt;
+  String? createdAt;
+  String? updatedAt;
 
   OrdersItems(
       {this.id,
