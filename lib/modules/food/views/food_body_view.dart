@@ -130,8 +130,8 @@ class _FoodBodyViewState extends State<FoodBodyView> {
                                           Dimensions.radius20),
                                       color: Colors.orange,
                                       image: DecorationImage(
-                                        image:
-                                            AssetImage("assets/images/food3.jpg"),
+                                        image: recommendedProduct.image == null ?
+                                            AssetImage("assets/images/food3.jpg") : NetworkImage(controller.recommendedProductList[index].image) as ImageProvider,
                                         fit: BoxFit.cover,
                                       )),
                                 ),
@@ -246,7 +246,7 @@ class _FoodBodyViewState extends State<FoodBodyView> {
                 borderRadius: BorderRadius.circular(Dimensions.width30),
                 color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
                 image: DecorationImage(
-                    image: AssetImage("assets/images/food1.jpg"),
+                    image: popularProduct.image == null ? AssetImage("assets/images/food1.jpg") : NetworkImage(popularProduct.image!) as ImageProvider,
                     fit: BoxFit.cover)),
           ),
         ),

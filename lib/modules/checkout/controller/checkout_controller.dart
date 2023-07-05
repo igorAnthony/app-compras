@@ -1,6 +1,11 @@
+import 'package:eisteintaste/global/constant/route.dart';
+import 'package:eisteintaste/models/api_response.dart';
 import 'package:eisteintaste/modules/address/views/add_address_view.dart';
+import 'package:eisteintaste/modules/cart/controller/cart_controller.dart';
+import 'package:eisteintaste/modules/cart/model/cart_model.dart';
 import 'package:eisteintaste/modules/checkout/view/payment_view.dart';
 import 'package:eisteintaste/modules/checkout/view/review_view.dart';
+import 'package:eisteintaste/modules/orders/controller/orders_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -56,4 +61,11 @@ class CheckOutController extends GetxController {
     update();
   }
 
+  void placeOrder() async {
+    ApiResponse response = await Get.find<OrdersController>().createOrder();
+    if(response.error == null){
+      Get.find<CartController>().clearCart();
+      Get.offAllNamed(Routes.homeRoute);
+    }    
+  }
 }

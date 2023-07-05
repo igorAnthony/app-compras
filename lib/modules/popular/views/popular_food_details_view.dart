@@ -84,8 +84,12 @@ class PopularFoodDetailsView extends StatelessWidget{
             backgroundColor: Color.fromARGB(255, 248, 200, 67),
             expandedHeight: Dimensions.height290,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/images/food2.jpg",
+              background: controller.popularProductList[pageId].image == null ? Image.asset(
+                "assets/images/food1.jpg",
+                width: double.maxFinite,
+                fit: BoxFit.cover,
+              ): Image.network(
+                controller.popularProductList[pageId].image,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),

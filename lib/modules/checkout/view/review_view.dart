@@ -282,7 +282,7 @@ class _ReviewViewState extends State<ReviewView> {
                 SizedBox(height: Dimensions.height10),
                 GestureDetector(
                   onTap: () {
-                    Get.find<CartController>().cartCheckOut();
+                    Get.find<CheckOutController>().placeOrder();
                   },
                   child: Container(
                     height: Dimensions.height45,

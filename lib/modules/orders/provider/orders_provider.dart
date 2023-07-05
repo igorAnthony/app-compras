@@ -19,6 +19,7 @@ class OrdersProvider{
             'Accept': 'application/json',
             'Authorization': 'Bearer ${box.read('token')}'
           });
+      print(response.body);
       switch (response.statusCode) {
         case 200:
           apiResponse.data = jsonDecode(response.body)['orders']
@@ -36,6 +37,7 @@ class OrdersProvider{
           break;
       }
     } catch (e) {
+      print(e);
       apiResponse.error = ApiConstants.serverError;
     }
     return apiResponse;
@@ -74,7 +76,7 @@ class OrdersProvider{
     ApiResponse apiResponse = ApiResponse();
 
     try {
-      final url = Uri.parse('${ApiConstants.baseURL}/createOrder');
+      final url = Uri.parse('${ApiConstants.ordersURL}');
       final headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -86,12 +88,13 @@ class OrdersProvider{
         'payment_method': payment_method,
         'address_id': address_id,
       });
-
+      
       final response = await http.post(url, headers: headers, body: body);
+      print(response.statusCode);
 
       switch (response.statusCode) {
         case 200:
-          apiResponse.data = jsonDecode(response.body);
+          apiResponse.data = jsonDecode(response.body)['order_id'];
           break;
         case 401:
           apiResponse.error = ApiConstants.unauthorized;
@@ -111,18 +114,24 @@ class OrdersProvider{
     ApiResponse apiResponse = ApiResponse();
 
     try {
-      final url = Uri.parse('${ApiConstants.baseURL}/createOrderItems/$orderId');
+      final url = Uri.parse('${ApiConstants.ordersURL}/$orderId');
       final headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer ${box.read('token')}',
       };
+      List<Map<String, dynamic>> itemsData = items.map((cart) => {
+      'product_id': cart.product.id,
+      'quantity': cart.quantity,
+      'total_price': cart.product.price! * cart.quantity,
+    }).toList();
       final body = jsonEncode({
-        'items': items,
+        'items': itemsData,
+        'order_id': orderId,
       });
 
       final response = await http.post(url, headers: headers, body: body);
-
+      print(response.statusCode);
       switch (response.statusCode) {
         case 200:
           apiResponse.data = jsonDecode(response.body);
@@ -135,6 +144,7 @@ class OrdersProvider{
           break;
       }
     } catch (e) {
+      print(e);
       apiResponse.error = ApiConstants.serverError;
     }
 

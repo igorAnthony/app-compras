@@ -33,7 +33,7 @@ class RecommendedFoodDetailsView extends GetView<RecommendedController>{
                 height: Dimensions.popularFoodImgSize,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                  image: AssetImage("assets/images/food1.jpg"),
+                  image: controller.recommendedProductList[pageId].image == null ? AssetImage("assets/images/food1.jpg") : NetworkImage(controller.recommendedProductList[pageId].image!) as ImageProvider,
                   fit: BoxFit.cover,
                 )),
               ),

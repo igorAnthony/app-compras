@@ -103,12 +103,11 @@ class CartController extends GetxController {
       print(_historyList.length);
     }
   }
-  void cartCheckOut(){
+  void clearCart(){
     cartRepo.addToCartHistory(_cartList);
     _cartList = [];
     cartRepo.addToCartList(_cartList);
     calculateCartTotal();
-    
   }
   void addPreviousCartListInCart(int cartHistoryIndex){
     final CartHistory? previousCartList = _historyList[cartHistoryIndex];

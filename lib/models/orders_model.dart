@@ -2,7 +2,7 @@ class Orders {
   int? id;
   int? customerId;
   String? totalAmount;
-  String? orderStatus;
+  int? orderStatus;
   String? paymentMethod;
   int? addressId;
   String? createdAt;

@@ -1,10 +1,12 @@
 import 'package:eisteintaste/global/constant/api_constant.dart';
 import 'package:eisteintaste/models/api_response.dart';
 import 'package:eisteintaste/models/orders_model.dart';
+import 'package:eisteintaste/models/user.dart';
 import 'package:eisteintaste/modules/address/controller/address_controller.dart';
 import 'package:eisteintaste/modules/cart/controller/cart_controller.dart';
 import 'package:eisteintaste/modules/checkout/controller/checkout_controller.dart';
 import 'package:eisteintaste/modules/orders/repository/orders_repository.dart';
+import 'package:eisteintaste/modules/profile/controller/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +20,7 @@ class OrdersController extends GetxController {
   List<dynamic> get ordersListItems => _ordersListItems;
   double subtotal = 0;
   RxBool isLoading = true.obs;
-
+  bool isCreated = false;
   @override
   void onInit(){
     getOrdersList();
@@ -26,8 +28,19 @@ class OrdersController extends GetxController {
   }
   Future<void> getOrdersList() async {
     ApiResponse response = await ordersRepository.getOrdersList();
-    _ordersList.addAll(response.data as List<dynamic>);
-    update();
+    if(response.error == null){
+      _ordersList = response.data as List<dynamic>;
+      update();
+    }else{
+      Get.showSnackbar(
+        GetSnackBar(
+          backgroundColor: Colors.red,
+          message: response.error.toString(),
+          icon: const Icon(Icons.add),
+          duration: const Duration(seconds: 1),
+        ),
+      );
+    }
   }
   Future<void> getItemsOfOrders(Orders order) async {
     ApiResponse response = await ordersRepository.getItemsOfOrders(order.id!);
@@ -41,15 +54,20 @@ class OrdersController extends GetxController {
     update();
     
   }
-  Future<void> createOrder() async {
+  Future<ApiResponse> createOrder() async {
     String paymentMethod = Get.find<CheckOutController>().paymentOptionsNames[Get.find<CheckOutController>().paymentOptionsIndex.value];
     int address_id = Get.find<AddressController>().addressList[Get.find<AddressController>().addressTypeIndex].id!;
-    ApiResponse response = await ordersRepository.createOrder(int.parse(box.read('user')), subtotal, paymentMethod, address_id);
+    User user = Get.find<UserController>().user;
+    double total = Get.find<CartController>().totalAmount.value;
+    ApiResponse response = await ordersRepository.createOrder(user.id!, total, paymentMethod, address_id);
+    
     if(response.error == null){
+      late ApiResponse response2;
       int order_id = response.data as int;
       if(order_id != 0){
-        await createOrderItems(order_id);
+        response2 = await createOrderItems(order_id);
       }
+      return response2;
     }else{
       Get.showSnackbar(
         GetSnackBar(
@@ -59,9 +77,10 @@ class OrdersController extends GetxController {
           duration: const Duration(seconds: 1),
         ),
       );
+      return response;
     }
   }
-  Future<void> createOrderItems(int order_id) async {
+  Future<ApiResponse> createOrderItems(int order_id) async {
     ApiResponse response = await ordersRepository.createOrderItems(order_id, Get.find<CartController>().cartList);
     if(response.error == null){
       Get.showSnackbar(
@@ -73,6 +92,7 @@ class OrdersController extends GetxController {
         ),
       );
     }else{
+      print(response.error);
       Get.showSnackbar(
         GetSnackBar(
           backgroundColor: Colors.red,
@@ -82,6 +102,7 @@ class OrdersController extends GetxController {
         ),
       );
     }
+    return response;
   }
   void reset(){
     _ordersListItems = [];
