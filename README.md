@@ -4,7 +4,7 @@
 <h1 align="center">Einstein Taste </h1>
 <h2>Descrição</h2>
 <p>
-O projeto "Einstein Taste" consiste no desenvolvimento de um aplicativo de e-commerce, com uma experiência completa de um restaurante de comida, esse projeto está dividido em dois aplicativos, um feito para o cliente(este no caso) e outro com foco no <a href="https://github.com/igorAnthony/einsteintaste-adminpanel"> administrador do sistema </a>  onde é possivel gerenciar os produtos e tudo relacionado a ele. O backend foi implementado utilizando o framework <a href="https://github.com/igorAnthony/einsteintaste-adminpanel"> Laravel </a> , conhecido por sua performance, escalabilidade e segurança. O frontend, por sua vez, é desenvolvido em Flutter, um framework para criação de aplicativos móveis multiplataforma.<br> </p>
+O projeto "Einstein Taste" consiste no desenvolvimento de um aplicativo de e-commerce, com uma experiência completa de um restaurante de comida, esse projeto está dividido em dois aplicativos, um feito para o cliente(este no caso) e outro com foco no <a href="https://github.com/igorAnthony/einsteintaste-adminpanel"> administrador do sistema </a>  onde é possivel gerenciar os produtos e tudo relacionado a ele. O backend foi implementado utilizando o framework <a href="https://github.com/igorAnthony/einsteintaste-laravel"> Laravel </a> , conhecido por sua performance, escalabilidade e segurança. O frontend, por sua vez, é desenvolvido em Flutter, um framework para criação de aplicativos móveis multiplataforma.<br> </p>
 
 <h2>Highlights</h2>
 <p>
